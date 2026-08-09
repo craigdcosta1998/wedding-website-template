@@ -1,0 +1,164 @@
+{
+  "common": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "back": "Back",
+    "next": "Next",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "yes": "Yes",
+    "no": "No",
+    "language": "Language",
+    "german": "Deutsch",
+    "english": "English"
+  },
+  "nav": {
+    "home": "Home",
+    "rsvp": "RSVP",
+    "events": "Schedule",
+    "accommodation": "Hotels",
+    "ourStory": "Our Story",
+    "gift": "Gifts"
+  },
+  "home": {
+    "title": "Welcome to Our Wedding",
+    "subtitle": "We are excited to celebrate this special occasion with you.",
+    "rsvpButton": "RSVP Now"
+  },
+  "rsvp": {
+    "title": "RSVP",
+    "formDescription": "Please let us know if you can make it.",
+    "contactInfo": "Contact Details",
+    "contactName": "Name",
+    "contactNamePlaceholder": "Your name",
+    "contactEmail": "Email",
+    "contactEmailPlaceholder": "your@email.com",
+    "guestsTitle": "Guests",
+    "guestsDescription": "Add everyone who is invited",
+    "guestNumber": "Guest {number}",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "attendance": "Attendance",
+    "attending": "Attending",
+    "notAttending": "Not attending",
+    "addGuest": "Add another guest",
+    "dietaryPreference": "Dietary preferences or allergies",
+    "dietary_none": "No preferences or allergies",
+    "dietary_vegetarian": "Vegetarian",
+    "dietary_vegan": "Vegan",
+    "dietary_other": "Other",
+    "dietaryOtherPlaceholder": "Please describe your dietary needs...",
+    "submitRsvp": "Submit RSVP",
+    "submitError": "Something went wrong while submitting",
+    "thankYou": "Thank you!",
+    "confirmationMessage": "We look forward to celebrating with you!",
+    "addToCalendar": "Add to calendar",
+    "events": "Events",
+    "noEventsSelected": "Not attending"
+  },
+  "events": {
+    "title": "Schedule",
+    "schedule": "Timeline",
+    "ceremony": "Ceremony",
+    "reception": "Reception",
+    "dinner": "Dinner",
+    "party": "Party",
+    "viewOnMap": "View on map",
+    "dresscode": "Dress code",
+    "directions": "Public transport",
+    "parking": "Parking",
+    "furtherInfo": "Further Information",
+    "witnessesInfo": "If you have any questions regarding the schedule or any performances, please reach out to our witnesses."
+  },
+  "accommodation": {
+    "title": "Hotels",
+    "subtitle": "A few hotel recommendations near our venue.",
+    "perNight": "/ night",
+    "fromAbout": "from approx.",
+    "reviews": "reviews",
+    "example": {
+      "name": "[Hotel Name]",
+      "description": "[A short description of the hotel — replace this placeholder text.]",
+      "price": "from approx. €100 / night",
+      "distance": "[X] min walk to the venue"
+    }
+  },
+  "ourStory": {
+    "title": "Our Story"
+  },
+  "gift": {
+    "title": "Gifts",
+    "intro": "The greatest gift to us is having you celebrate with us.",
+    "honeymoon": "[If you'd like to go beyond that — e.g. a contribution to the honeymoon — say so here. Replace this placeholder text.]",
+    "story": "[Tell a short story about your gift registry or travel plans here — replace this placeholder text.]",
+    "bankDetails": "Bank Details",
+    "showDetails": "Show bank details",
+    "accountHolder": "Account holder",
+    "iban": "IBAN",
+    "bic": "BIC"
+  },
+  "password": {
+    "title": "Welcome",
+    "description": "Please enter the password from your invitation.",
+    "placeholder": "Password",
+    "submit": "Enter",
+    "loading": "Loading...",
+    "incorrect": "Incorrect password",
+    "required": "Password is required"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "login": "Login",
+    "logout": "Logout",
+    "loginTitle": "Admin Area",
+    "loginDescription": "Sign in to access the dashboard",
+    "loginError": "Invalid credentials",
+    "loggingIn": "Signing in...",
+    "emailLabel": "Email",
+    "emailPlaceholder": "admin@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter password",
+    "stats": {
+      "title": "RSVP Statistics",
+      "totalHouseholds": "Total Households",
+      "totalGuests": "Total Guests",
+      "confirmed": "Confirmed",
+      "declined": "Declined",
+      "pending": "Pending",
+      "perEvent": "Per Event",
+      "adults": "Adults",
+      "children": "Children",
+      "toddlers": "Toddlers"
+    },
+    "dietary": {
+      "title": "Dietary Restrictions"
+    },
+    "meals": {
+      "title": "Meal Overview"
+    },
+    "households": {
+      "title": "Households",
+      "search": "Search...",
+      "filterByStatus": "Filter by status",
+      "filterByType": "Filter by type",
+      "all": "All"
+    },
+    "export": {
+      "csv": "Export as CSV"
+    },
+    "seating": {
+      "title": "Seating Plan",
+      "backToAdmin": "Back to dashboard",
+      "cardTitle": "Seating Plan",
+      "cardDescription": "Plan tables and seat guests by drag and drop"
+    }
+  },
+  "footer": {
+    "questions": "Questions? Contact us at",
+    "madeWith": "Made with love"
+  }
+}
