@@ -1,47 +1,52 @@
-// ABOUTME: Events schedule page with watercolor venue illustrations
-// ABOUTME: Fetches events from database and renders collapsible timeline
+// ABOUTME: Editorial celebrations programme; invitation-only entries are filtered before rendering
 export const dynamic = 'force-dynamic';
 
-import { EventTimeline } from "@/components/events/event-timeline";
-import { WitnessContactCard } from "@/components/events/witness-contact-card";
-import { createServiceClient } from "@/lib/supabase/server";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ArrowUpRight } from 'lucide-react';
+import { setRequestLocale } from 'next-intl/server';
+import { Link } from '@/i18n/routing';
+import { WEDDING_CONFIG } from '@/config/wedding';
+import { getCelebrationsPageData } from '@/lib/celebration-access';
+import { CelebrationsSchedule } from '@/components/editorial/celebrations-schedule';
+import journal from '@/components/editorial/journal.module.css';
+import styles from '@/components/editorial/celebrations.module.css';
 
 interface EventsPageProps {
   params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ preview?: string | string[] }>;
 }
 
-export default async function EventsPage({ params }: EventsPageProps) {
+export default async function EventsPage({ params, searchParams }: EventsPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  const t = await getTranslations("events");
-  const supabase = await createServiceClient();
-  const { data } = await supabase
-    .from("events")
-    .select("*")
-    .order("sort_order", { ascending: true });
-
-  const events = data || [];
+  const query = await searchParams;
+  const { celebrations, details, isPlanningPreview } = await getCelebrationsPageData(query?.preview === 'planning');
 
   return (
-    <div className="flex flex-col">
-      <section className="relative min-h-screen watercolor-canvas paper-texture">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
-
-        <div className="relative z-10 container mx-auto px-4 py-12">
-          <div className="max-w-xl mx-auto">
-            <h1 className="handwritten text-4xl sm:text-5xl text-primary mb-8 text-center">
-              {t("title")}
-            </h1>
-            <EventTimeline events={events} locale={locale} />
-
-            <div className="mt-12">
-              <WitnessContactCard />
-            </div>
+    <div className={`${journal.journal} ${styles.celebrations}`}>
+      <div className={journal.page}>
+        {isPlanningPreview && <aside className={styles.preview} aria-label="Planning preview">
+          <p>Planning preview · All four days</p>
+          <Link href="/events">View guest page</Link>
+        </aside>}
+        <section className={styles.hero} aria-labelledby="celebrations-heading">
+          <p className={styles.overline}>{WEDDING_CONFIG.coupleNames} / {WEDDING_CONFIG.location}</p>
+          <h1 id="celebrations-heading" className={styles.title}>The <span>celebrations.</span></h1>
+          <div className={styles.heroBottom}>
+            <p className={styles.dateRange}>{WEDDING_CONFIG.celebrationDateRange}</p>
+            <p className={styles.introduction}>The plans so far.<br />Timings and finer details to follow.</p>
           </div>
+        </section>
+        <nav className={styles.index} aria-label="Celebrations">
+          {celebrations.map(event => <a key={event.key} href={`#${event.key}`}>
+            {event.title}<span>{event.date.slice(-2)} September</span>
+          </a>)}
+        </nav>
+        <CelebrationsSchedule celebrations={celebrations} details={details} />
+        <div className={styles.closing}>
+          <p>We look forward to celebrating with you.</p>
+          <Link href="/rsvp" className={journal.textLink}>RSVP <ArrowUpRight size={17} strokeWidth={1} aria-hidden="true" /></Link>
         </div>
-      </section>
+      </div>
     </div>
   );
 }

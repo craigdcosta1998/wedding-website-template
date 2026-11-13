@@ -1,19 +1,17 @@
 ﻿// ABOUTME: Italian Journal homepage with an asymmetrical Editorial Cover hero
-import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { WEDDING_CONFIG } from '@/config/wedding';
-import { HOMEPAGE_CONFIG } from '@/config/homepage';
 import type { Locale } from '@/i18n/config';
-import { CoverMotion } from '@/components/editorial/cover-motion';
+import { EditorialCover } from '@/components/editorial/editorial-cover';
 import styles from '@/components/editorial/journal.module.css';
+import coverStyles from '@/components/editorial/editorial-cover.module.css';
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations('journal');
-  const photo = HOMEPAGE_CONFIG.heroPhoto;
   const chapters = [
     { href: '/our-story', title: t('story'), detail: t('storyDetail') },
     { href: '/events', title: t('celebrations'), detail: WEDDING_CONFIG.celebrationDateRange },
@@ -21,36 +19,9 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   ];
 
   return (
-    <div className={styles.journal}>
+    <div className={`${styles.journal} ${coverStyles.canvas}`}>
       <div className={styles.page}>
-        <CoverMotion names={WEDDING_CONFIG.coupleNames} announcement={t('announcement')}
-          location={WEDDING_CONFIG.locationDetails.city}
-          intro={<>
-            <p className={styles.invitation}>{t('invitation')}</p>
-            <p className={styles.italian} lang="it">Ci vediamo<br />in Italia.</p>
-            <ArrowDownRight size={28} strokeWidth={1} aria-hidden="true" />
-          </>}
-          actions={<>
-            <time className={styles.coverNote} dateTime={WEDDING_CONFIG.weddingDate.slice(0, 7)}>{WEDDING_CONFIG.weddingMonthYear}</time>
-            <Link href="/rsvp" className={styles.textLink}>{t('rsvp')}<ArrowUpRight size={17} aria-hidden="true" /></Link>
-          </>}>
-          <div className={styles.portrait}>
-            {photo ? (
-              <Image src={photo.src} alt={photo.alt[locale as Locale]} fill priority
-                sizes="(max-width: 700px) 90vw, (max-width: 1280px) 70vw, 880px"
-                className={styles.photo} style={{ objectPosition: photo.objectPosition }} />
-            ) : (
-              <div className={styles.photoPlaceholder}>
-                <span className={styles.placeholderIndex}>01 / {t('portrait')}</span>
-                <div className={styles.placeholderCaption}>
-                  <span className={styles.placeholderMark} aria-hidden="true">{WEDDING_CONFIG.coupleFirstNames.partner1[0]} / {WEDDING_CONFIG.coupleFirstNames.partner2[0]}</span>
-                  <p>{t('photoPlaceholder')}</p>
-                  <span>{t('photoPending')}</span>
-                </div>
-              </div>
-            )}
-          </div>
-        </CoverMotion>
+        <EditorialCover locale={locale as Locale} />
         <section className={styles.contents} aria-labelledby="contents-heading">
           <div className={styles.contentsIntro}>
             <h2 id="contents-heading" className={styles.eyebrow}>{t('contents')}</h2>

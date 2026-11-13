@@ -10,38 +10,46 @@ English only. The journal reference should be expressed through composition, typ
 
 ## Palette
 
-The colour families are approved; these initial implementation values can be refined during visual review:
+The user specified these exact values for the current homepage cover:
 
 | Role | Colour | Value |
 | --- | --- | --- |
-| Paper | Warm ivory | #F6F2E9 |
-| Accent | Muted terracotta | #A75E48 |
-| Secondary text | Dusty olive | #62664E |
-| Names and principal links | Oxblood | #582B35 |
-| Body text | Warm charcoal | #302E28 |
+| Paper | Warm ivory | #F5F0E6 |
+| Accent | Terracotta | #B66E55 |
+| Secondary text | Dusty olive | #777D5C |
+| Names and principal links | Oxblood | #6F3038 |
+| Body text | Espresso | #332B27 |
 
-Homepage tokens live in src/components/editorial/journal.module.css. Keep them scoped while other pages retain the template UI. Use the existing Crimson Text serif for display type and a restrained system sans serif for navigation and small labels. No new font download is required by this pass.
+The current homepage palette overrides live in src/components/editorial/editorial-cover.module.css; the other editorial pages retain their existing journal.module.css tokens. Use the existing Crimson Text serif for display type and a restrained system sans serif for navigation and small labels. No new font download is required by this pass.
 
 ## Homepage hero: Editorial Cover
 
-- Desktop: large portrait area offset to the right, with a narrow editorial margin on the left.
-- Full couple names no longer appear as oversized hero typography. Keep the T & C masthead, small footer sign-off, and accessible page heading.
-- The hero shows "We're getting married", "Florence", and the static month "September 2027" beside RSVP. The confirmed September 14 wedding day remains in shared configuration for other pages/calendar exports. Venue and event timings are still unconfirmed.
-- A compact RSVP link and a numbered contents index lead into separate existing pages.
-- Integrate the essential details into the photograph's frame: "We're getting married" along the top horizontal rule, and "Florence" vertically along the right rule. As the visitor scrolls, smoothly translate/scale the announcement into a large serif caption beneath the photograph and rotate/translate Florence into a horizontal caption below it. Reverse the movement on scroll up. No duplicate announcement in the left margin, Key info heading, separate details panel, duplicate date, or numeric 14/09 label.
-- Motion follows scrolling. After a 150ms pause (or native scrollend), ease to the frame below 50% progress or to the bottom from 50% onward, over 320ms. Wait while a pointer/touch is held. Resume from the displayed pose without jumping back to raw scroll progress. Never intercept scrolling or move the page itself. Measure the frame/caption anchors again on resize and after fonts load. Use transform-only updates batched with requestAnimationFrame. The normal document flow reserves the caption area so animation does not shift the contents below.
-- Florence shares the announcement's Crimson Text and oxblood colour, but stays smaller: 18px at the border and 20px beneath the photo on desktop, 16px on mobile. Keep natural title case, the vertical-to-horizontal animation, and a clear visual hierarchy beneath the large announcement caption. Size the longer announcement to fit mobile, tablet, and desktop widths.
-- Reduced motion and no JavaScript: readable static announcement/location captions beneath the photograph. Moving duplicates are hidden from assistive technology; the static month and heading remain available. These fallbacks are part of the design.
-- Mobile: portrait-oriented crop, compact introduction, reserved right gutter for vertical Florence, smaller border labels and final caption, and stacked contents links. Avoid horizontal scrolling.
-- Tablet: preserve the asymmetry with a smaller margin and stack chapter descriptions as needed.
+- This iteration supersedes the scroll-linked announcement/location hero. Keep it static and focused on the portrait and names; the prior motion component remains available in the repository/checkpoint.
+- Desktop: centered 4:5 portrait capped at 540px wide, with generous ivory space. Oversized expressive serif "Talia & Craig" crosses the lower photo edge into the margins. The vertical date stays beside the centered frame.
+- Use the selected beach portrait only. The source is missing, so the current frame says "Selected beach portrait to follow". Do not substitute the unrelated watercolor asset, stock photography, or generated people.
+- Preserve the full image with object-fit: contain. Names overlap the lower edge; verify face clearance against the actual photograph once supplied. The missing photograph prevents final crop/face approval.
+- Fine rules and small "We're getting married" / "Florence, Italy" labels frame the portrait. "September 2027" is a restrained vertical date on desktop, horizontal below the photo on mobile. Preserve the verified wedding day and celebration range in shared configuration.
+- Mobile: centered, near-full-width 3:4 portrait, offset left frame rule, two-line "Talia &" / "Craig" across its lower edge, and horizontal date/RSVP. Avoid horizontal scrolling.
+- Tablet: retain the wider relative portrait, centered within the page. Keep names within the page width.
+- Remove the introduction and Italian sign-off from the hero. "Ci vediamo in Italia." is saved in ../feature_list.txt under ideas without a home; it has no current placement.
+- This is a single hero iteration: navigation, contents, other pages, and backend behavior are not redesigned.
 - Homepage navigation includes Our Story, The Celebrations (/events), Where to Stay (/hotels), Gifts, and RSVP. Show the confirmed September 12–15, 2027 range in the homepage celebrations listing. Do not create dead links to planned routes.
 - Mobile navigation is a disclosure with expanded state, Escape-to-close, and a visible keyboard focus treatment. Include a skip-to-content link.
 
+## Celebrations programme
+
+- Extend the editorial header/footer to /events. Preserve the homepage and other pages' compositions.
+- Large serif page heading, a restrained date range, fine rules, a simple event index, and spacious date/title/venue rows. No card grid, glass panels, stock venue images, or invented event descriptions/logistics.
+- Display the supplied September 12–15 schedule and venues in the local planning preview. The guest response contains only the welcome party and wedding until credential matching is decided and implemented; private sections and their index links must be omitted server-side.
+- Retain independent permissions for Roce and pool party. The choice of guest versus couple/household credentials remains open in BACKLOG.md. Do not activate a credential model or assign guest lists.
+- Desktop uses a separate date margin and side-by-side event/venue text. Tablet stacks venue text; mobile has a compact date rail and stacked titles/venues with a vertical index.
+- Dates are date-only; any confirmed linked database timings use Europe/Rome. Pending times, dress codes, addresses, and transport are not fabricated. Existing records can be linked via databaseEventId in src/config/celebrations.ts.
+
 ## Photograph handoff
 
-No approved couple photograph exists in the repository. Render a clearly labelled, solid-colour placeholder until supplied. Do not substitute stock people or generated portraits.
+The selected beach portrait does not exist in the repository. The only raster asset, public/watercolor-hero.jpg, is an unrelated venue illustration. Render a clearly labelled, solid-colour portrait frame until the exact photograph is supplied. Do not substitute stock people or generated portraits.
 
-Add the approved image under public/ and configure heroPhoto in src/config/homepage.ts with its public URL, meaningful English alt text, and objectPosition. The hero already supports next/image with responsive sizes and priority loading. Check subject placement in both the desktop landscape and mobile portrait crops before accepting the photograph.
+Add the selected image under public/ and configure heroPhoto in src/config/homepage.ts with its public URL, meaningful English alt text, and objectPosition. The hero supports next/image with responsive sizes, priority loading, and full-image fitting. Check subject placement and name overlap in both portrait compositions before accepting the photograph.
 
 ## Scope and validation
 

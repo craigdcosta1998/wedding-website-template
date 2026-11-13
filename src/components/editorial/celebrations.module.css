@@ -1,0 +1,75 @@
+/* ABOUTME: An editorial programme with generous rules and a responsive date margin */
+.celebrations {
+  --ivory: #f5f0e6;
+  --terracotta: #b66e55;
+  --olive: #777d5c;
+  --oxblood: #6f3038;
+  --ink: #332b27;
+  --rule: #d4cabb;
+}
+.preview { display: flex; justify-content: space-between; gap: 20px; padding-block: 18px; border-bottom: 1px solid var(--rule); color: var(--olive); font-size: 11px; line-height: 1.5; }
+.preview a { text-decoration: underline; text-underline-offset: 4px; }
+.hero { padding-block: 78px 58px; }
+.overline, .fullDate, .index a, .eventDetails summary, .mapLink { font-size: 10px; font-weight: 400; letter-spacing: .13em; line-height: 1.6; text-transform: uppercase; }
+.overline { color: var(--terracotta); }
+.title { margin-top: 24px; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(64px, 8.6vw, 124px); font-weight: 400; line-height: .97; letter-spacing: -.045em; }
+.title span { font-style: italic; }
+.heroBottom { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-top: 40px; }
+.dateRange { color: var(--olive); font-family: var(--font-handwritten), Georgia, serif; font-size: 25px; line-height: 1.2; }
+.introduction { max-width: 320px; color: var(--ink); font-family: var(--font-handwritten), Georgia, serif; font-size: 23px; line-height: 1.3; }
+.index { display: flex; flex-wrap: wrap; gap: 16px 38px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding-block: 20px; }
+.index a { display: inline-flex; align-items: center; gap: 12px; min-height: 32px; color: var(--oxblood); }
+.index a span { color: var(--olive); font-family: var(--font-handwritten), Georgia, serif; font-size: 17px; letter-spacing: 0; text-transform: none; }
+.schedule { padding-top: 14px; }
+.event { display: grid; grid-template-columns: 130px 1fr; gap: 44px; padding-block: 64px 72px; border-bottom: 1px solid var(--rule); scroll-margin-top: 30px; }
+.dateRail { padding-top: 4px; }
+.dateNumber { display: block; margin-top: 20px; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: 76px; line-height: .9; letter-spacing: -.055em; }
+.month { display: block; margin-top: 7px; color: var(--olive); font-family: var(--font-handwritten), Georgia, serif; font-size: 20px; font-style: italic; }
+.eventBody { min-width: 0; }
+.eventHeading { display: grid; grid-template-columns: 1.2fr 1fr; gap: 45px; align-items: end; }
+.fullDate { display: block; color: var(--olive); letter-spacing: .07em; }
+.eventTitle { max-width: 510px; margin-top: 18px; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(44px, 5vw, 68px); font-weight: 400; line-height: 1.05; letter-spacing: -.035em; text-wrap: balance; }
+.venue { padding-bottom: 3px; }
+.venue p { margin-top: 14px; font-family: var(--font-handwritten), Georgia, serif; font-size: 30px; line-height: 1.15; }
+.eventDetails { margin-top: 34px; color: var(--ink); }
+.eventDetails summary { display: flex; align-items: center; gap: 18px; width: fit-content; min-height: 44px; border-bottom: 1px solid var(--rule); color: var(--olive); cursor: pointer; list-style: none; }
+.eventDetails summary::-webkit-details-marker { display: none; }
+.eventDetails summary:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 5px; }
+.eventDetails[open] summary svg { transform: rotate(90deg); }
+.detailBody { max-width: 670px; padding-top: 22px; font-size: 14px; line-height: 1.7; }
+.detailBody dl { margin-top: 18px; }
+.detailBody dl > div { display: grid; grid-template-columns: 110px 1fr; gap: 18px; margin-block: 13px; }
+.detailBody dt { color: var(--olive); font-size: 11px; }
+.detailBody dd { white-space: pre-line; }
+.mapLink { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; margin-top: 12px; color: var(--oxblood); border-bottom: 1px solid var(--oxblood); }
+.closing { display: flex; justify-content: space-between; align-items: center; gap: 30px; padding-block: 35px 72px; }
+.closing p { max-width: 370px; color: var(--olive); font-family: var(--font-handwritten), Georgia, serif; font-size: 22px; line-height: 1.3; }
+
+@media (max-width: 1000px) {
+  .event { grid-template-columns: 95px 1fr; gap: 30px; }
+  .eventHeading { grid-template-columns: 1fr; gap: 30px; }
+  .venue p { margin-top: 8px; }
+}
+@media (max-width: 700px) {
+  .hero { padding-block: 42px 34px; }
+  .title { font-size: clamp(52px, 12vw, 84px); margin-top: 20px; }
+  .title span { display: block; }
+  .heroBottom { grid-template-columns: 1fr; gap: 22px; margin-top: 28px; }
+  .dateRange { font-size: 23px; }
+  .introduction { max-width: 275px; font-size: 21px; }
+  .index { flex-direction: column; gap: 8px; padding-block: 14px; }
+  .index a { justify-content: space-between; font-size: 9px; }
+  .event { grid-template-columns: 60px 1fr; gap: 22px; padding-block: 38px 44px; }
+  .dateNumber { font-size: 53px; margin-top: 18px; }
+  .dateRail .overline { font-size: 8px; letter-spacing: .08em; }
+  .month { font-size: 15px; }
+  .fullDate { font-size: 9px; letter-spacing: .04em; }
+  .eventTitle { font-size: 42px; margin-top: 13px; }
+  .eventHeading { gap: 26px; }
+  .venue p { font-size: 26px; }
+  .eventDetails { margin-top: 25px; }
+  .detailBody dl > div { grid-template-columns: 1fr; gap: 2px; }
+  .closing { align-items: flex-start; flex-direction: column; gap: 20px; padding-block: 28px 45px; }
+  .closing p { font-size: 21px; }
+  .preview { flex-direction: column; gap: 6px; }
+}

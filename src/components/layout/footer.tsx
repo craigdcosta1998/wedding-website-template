@@ -11,7 +11,7 @@ export function Footer() {
   const t = useTranslations('footer');
   const pathname = usePathname();
 
-  if (pathname === '/' || pathname === '/our-story') return <EditorialFooter />;
+  if (pathname === '/' || pathname === '/our-story' || pathname === '/events') return <EditorialFooter />;
 
   return (
     <footer className="border-t py-8 mt-auto">

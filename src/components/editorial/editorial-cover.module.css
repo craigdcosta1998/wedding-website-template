@@ -1,0 +1,47 @@
+/* ABOUTME: Portrait-first cover, with a separate two-line mobile name composition */
+.canvas {
+  --ivory: #f5f0e6;
+  --terracotta: #b66e55;
+  --olive: #777d5c;
+  --oxblood: #6f3038;
+  --ink: #332b27;
+  --rule: #d4cabb;
+}
+
+.hero { --portrait-width: min(49%, 540px); position: relative; display: flex; flex-direction: column; padding-block: 80px 62px; }
+.portraitFrame { position: relative; width: var(--portrait-width); margin-inline: auto; }
+.portraitFrame::before { content: ''; position: absolute; top: -15px; left: -22px; right: -22px; border-top: 1px solid var(--rule); }
+.portraitFrame::after { content: ''; position: absolute; top: -15px; bottom: 0; right: -22px; border-right: 1px solid var(--rule); }
+.labels { position: absolute; top: -40px; left: 0; right: 0; display: flex; justify-content: space-between; gap: 20px; color: var(--terracotta); font-size: 9px; line-height: 1.5; letter-spacing: .13em; text-transform: uppercase; }
+.labels p:last-child { color: var(--olive); text-align: right; }
+.portrait { position: relative; aspect-ratio: 4 / 5; background: #e0ddcf; }
+.photo { object-fit: contain; }
+.pendingPortrait { position: absolute; inset: 0; display: grid; place-items: center; padding: 30px; color: var(--olive); text-align: center; }
+.pendingPortrait::after { content: ''; position: absolute; inset: 17px; border: 1px solid #bdbea9; }
+.pendingPortrait span { max-width: 190px; font-family: var(--font-handwritten), Georgia, serif; font-size: 23px; font-style: italic; line-height: 1.25; }
+.names { position: relative; z-index: 2; display: flex; align-items: baseline; gap: .13em; margin-top: -.46em; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(112px, 14.7vw, 210px); font-weight: 400; line-height: .92; letter-spacing: -.055em; white-space: nowrap; }
+.ampersand { font-size: .77em; font-style: italic; font-weight: 400; }
+.details { display: flex; justify-content: flex-end; align-items: center; margin-top: 34px; margin-right: 7%; }
+.date { position: absolute; top: 116px; right: calc((100% - var(--portrait-width)) / 2 - 55px); writing-mode: vertical-rl; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: 18px; line-height: 1.2; letter-spacing: .04em; }
+
+@media (min-width: 701px) and (max-width: 1100px) {
+  .hero { --portrait-width: 57%; padding-top: 74px; }
+  .names { font-size: 14.4vw; }
+  .date { top: 108px; }
+}
+
+@media (max-width: 700px) {
+  .hero { --portrait-width: 92%; padding-block: 62px 42px; }
+  .portraitFrame { order: 1; }
+  .portraitFrame::before { left: -14px; right: 0; }
+  .portraitFrame::after { left: -14px; right: auto; border-left: 1px solid var(--rule); border-right: 0; }
+  .portrait { aspect-ratio: 3 / 4; }
+  .labels { top: -39px; gap: 12px; font-size: 8px; letter-spacing: .09em; }
+  .pendingPortrait span { font-size: 21px; }
+  .pendingPortrait::after { inset: 12px; }
+  .names { order: 2; display: grid; grid-template-columns: max-content max-content; justify-content: start; column-gap: .12em; row-gap: .03em; width: 100%; margin-top: -.42em; font-size: clamp(76px, 22vw, 148px); line-height: .81; }
+  .ampersand { align-self: baseline; }
+  .lastName { grid-column: 1 / -1; margin-left: .8em; }
+  .details { order: 3; justify-content: space-between; gap: 18px; margin-top: 29px; margin-right: 0; }
+  .date { position: static; writing-mode: horizontal-tb; font-size: 17px; letter-spacing: 0; }
+}

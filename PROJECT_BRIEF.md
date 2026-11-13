@@ -94,9 +94,9 @@ Some sections may eventually be consolidated depending on content volume, but do
 
 ## Homepage
 
-Approved homepage direction: **Italian Journal**, using a photography-led **Editorial Cover** composition. Warm ivory, muted terracotta, dusty olive, and oxblood; asymmetry and generous whitespace. The latest direction replaces the oversized names and separate Key info section with announcement/location typography integrated into the photograph's frame.
+Approved homepage direction: **Italian Journal**, using a photography-led **Editorial Cover** composition. Warm ivory, terracotta, dusty olive, oxblood, and espresso; asymmetry and generous whitespace. The latest direction restores oversized "Talia & Craig" typography overlapping the lower edge of a dominant portrait photograph. It supersedes the earlier scroll-linked announcement/location hero.
 
-"We're getting married" starts above the photograph along the horizontal border. "Florence" starts vertically along its right border. As the visitor scrolls, both move beneath the photograph, with the announcement becoming a larger serif caption and Florence rotating to horizontal. The movement reverses on scroll up. When scrolling stops, settle both captions back to the frame before the halfway threshold or below the photo from halfway onward. Never leave the captions midway at rest or change the visitor's scroll position. "September 2027" is static beside RSVP, replacing the old venue/timing note. Reduced-motion users get static captions below the image. Keep the full couple names in the small site identity/footer and semantic page heading, not as a large hero wordmark. Do not display "KEY INFO" or the redundant "14/09". The confirmed September 14 wedding day remains in shared configuration for other pages and calendar exports.
+Use the selected beach portrait of Talia and Craig only; it is not currently in the repository. Keep a clearly labelled empty portrait frame until the exact image is provided. Desktop: a large centered 4:5 portrait, oversized single-line serif names crossing the lower edge into the ivory margins, fine rules and labels, and a vertical "September 2027" date beside the frame. Mobile: a centered 3:4 portrait, two-line names crossing the lower edge, and horizontal date/RSVP below. Remove "A little Italian chapter. A lifetime together." and "Ci vediamo in Italia." from the hero. Save the Italian phrase in the existing feature backlog as a nice-to-have with no current placement. Keep faces clear; final placement requires the real photograph. No invented dates, logistics, substitute image, or changes to navigation, other homepage sections, or backend functionality in this hero iteration. The verified September 14 wedding day and September 12–15 celebrations remain in shared configuration.
 
 The journal is an aesthetic reference, not a public title. Do not display "The Italian Journal" or "A wedding edition" as homepage branding.
 
@@ -116,12 +116,16 @@ The homepage is primarily an entrance into the rest of the website, not a page c
 
 The celebrations run September 12–15, 2027 and consist of several events:
 
-1. Welcome event
-2. Roce
-3. Catholic wedding ceremony + reception
-4. Farewell brunch / pool event
+1. September 12 — The Roce at Villa Mangiacane; selective guest list pending.
+2. September 13 — Welcome party at Serre Torrigiani.
+3. September 14 — Wedding at Villa Corsini.
+4. September 15 — Pool party at Villa Mangiacane; selective guest list pending.
 
-Exact venues and timing may change.
+These are the user-supplied current venue plans, not a statement that bookings or logistics are final. Times, dress codes, addresses, transport, and other details remain pending.
+
+Use a responsive editorial programme on /events, with date margins, large serif event names, venue typography, fine rules, and only the permitted entries in both the schedule and its navigation. The Roce and pool party are provisionally invitation-only and independently grantable. The credential unit (guest versus couple/household) is explicitly deferred; do not choose it or issue credentials yet. Keep private sections out of the guest response while matching is unimplemented. A development-only /en/events?preview=planning view shows all four days for local review and is ignored in production. Preserve existing database/RSVP/admin functions; link existing database event IDs explicitly for additional confirmed event details when ready.
+
+Open decisions and optional ideas belong in [BACKLOG.md](BACKLOG.md). Future project-status reviews should reconcile that file and ../feature_list.txt with the current code and verification notes.
 
 Therefore wedding information should be data-driven wherever practical rather than hard-coded repeatedly in components.
 

@@ -5,16 +5,41 @@
 - This Codex session is the primary implementation workspace; ChatGPT may be used separately for creative exploration.
 - Repository project files are the source of truth for requirements and decisions.
 - Italian Journal editorial aesthetic.
-- Warm ivory, muted terracotta, dusty olive, and oxblood palette.
-- Photograph-led Editorial Cover. The latest hero uses moving announcement/location captions around the photograph's frame; this supersedes the earlier oversized-name and location/date treatments.
+- Current homepage palette: ivory #F5F0E6, terracotta #B66E55, dusty olive #777D5C, oxblood #6F3038, espresso #332B27.
+- Photograph-led Editorial Cover. Latest direction: selected beach portrait in a dominant portrait frame, with oversized expressive "Talia & Craig" overlapping its lower edge into the ivory margins. This supersedes the scroll-linked announcement/location hero below.
 - Asymmetry and generous whitespace.
 - Preserve a genuine multipage Next.js website and existing backend functionality.
 - English only; no German translation or language controls.
 - Journal aesthetics are implicit. Remove the public journal/edition title.
 - Browser tabs use the coffee emoji as the favicon and the short title "T & C". Page headings retain the full couple names.
 - Wedding date: September 14, 2027 (the user corrected an initial 2026 typo). Public location: "Florence, Italy", replacing "Florence / Tuscany, Italy".
-- Celebrations run September 12–15, 2027. Use "The Celebrations" for the /events section, replacing "The Weekend"; show the range in the homepage listing. Individual event dates/times remain unassigned.
-- Latest hero copy: "We're getting married" moves from the top frame to the large caption below. "Florence" replaces the moving date, retaining its smaller serif/oxblood typography and rotation. "September 2027" stays static beside RSVP. At rest, captions settle to an endpoint using a halfway threshold.
+- Celebrations run September 12–15, 2027: Roce at Villa Mangiacane on the 12th; welcome party at Serre Torrigiani on the 13th; wedding at Villa Corsini on the 14th; pool party at Villa Mangiacane on the 15th. Venue bookings, times, and finer logistics are not asserted. Roce/pool-party guest lists and credential identity are pending.
+- Latest hero: centered portrait, static oversized names, small announcement/location labels, vertical "September 2027" beside the desktop frame and a horizontal date on mobile. No introductory paragraph or Italian sign-off.
+
+## Celebrations page and project backlog — 2026-11-13
+
+- Build /events as an editorial programme using the four dates and venues supplied by Craig. Keep timings, addresses, dress codes, transport, and other unknown details pending. Extend the existing editorial navigation/footer to this route; retain the homepage work.
+- Store the schedule in server-only src/config/celebrations.ts. Provisionally treat Roce and pool party as invitation-only, with independent per-event filtering. Render only the selected events and links, rather than hiding private content with CSS. The default guest page currently contains the welcome party and wedding.
+- Craig explicitly deferred individual-versus-couple/household credentials. No credential model, login form, invitation assignments, or database access migration was introduced. resolveVerifiedInvitations remains an unconnected server boundary that grants no private events. Credential integration and matching RSVP/database enforcement are required follow-up, not a completed authentication feature.
+- /en/events?preview=planning shows all four events only when NODE_ENV is development. It is ignored in production and never grants RSVP access. Existing database records may be linked by an explicit databaseEventId to supply confirmed details; unlinked records are retained and the page works without Supabase configuration. The old event/contact components remain available, but the placeholder witness name/phone is not displayed on the new page.
+- Add BACKLOG.md inside the repository for required decisions and optional ideas, including the Italian phrase. AGENTS.md and README.md point to it and instruct future status reviews to reconcile the actual code, verification notes, backlog, and original external feature queue. Do not store guest lists or issued credentials in these documents.
+- Verification: all 189 tests passed, including 13 new tests for independent event selection, omission of private titles/venues/anchors from guest HTML, production preview refusal, explicit development preview, restricted detail queries/payloads, and unavailable data sources. Production build, explicit TypeScript, and diff checks passed. Lint retains the existing unused RSVP import warning. Both local guest and planning URLs returned HTTP 200; only the planning response contained Villa Mangiacane, Roce, and pool-party sections. Desktop/tablet/mobile layout rules were reviewed in source; no new browser screenshots were captured. Live credential matching and Supabase integration remain pending, as requested and recorded in BACKLOG.md.
+
+## Centered portrait refinement — 2026-11-13
+
+- Remove "A little Italian chapter. A lifetime together." and "Ci vediamo in Italia." from the homepage hero. Save the Italian phrase in the original ../feature_list.txt backlog as a nice-to-have with no current placement.
+- Center the portrait on desktop, tablet, and mobile while retaining its existing sizes, aspect ratios, name overlap, labels, fine rules, palette, RSVP, and the rest of the page. Keep the desktop vertical date positioned beside the centered photo frame.
+- Earlier review screenshots predate this refinement and show the previous offset photo/introduction. The selected beach photograph remains missing.
+- Verification: production build, explicit TypeScript, all 176 existing tests, and diff checks passed. Lint retains the existing RSVP unused-import warning. Homepage returned HTTP 200 and contains neither removed passage. Centering and the adjacent date positioning were checked in desktop/tablet/mobile source rules; no new browser screenshots were taken for this small refinement.
+
+## Portrait Editorial Cover iteration — 2026-11-12
+
+- User requested one focused hero iteration with the selected beach portrait, portrait orientation, oversized overlapping names, intentional desktop/mobile compositions, and the exact palette above. Navigation, other homepage sections, verified dates/logistics, and backend functionality are retained.
+- Asset inspection found no beach portrait. public/watercolor-hero.jpg is an unrelated venue illustration; the other public assets are template SVGs. Keep heroPhoto null and explicitly label the pending portrait. The exact photograph is the remaining input; do not substitute another image.
+- Desktop uses a 4:5 portrait frame offset right and single-line serif names crossing the lower edge into the left ivory margin. Small left-side introduction, fine rules, labels, and a vertical month/date support the composition. Mobile uses a 3:4 frame, two-line names, horizontal date/RSVP, and the smaller introduction underneath. Tablet retains asymmetry with a wider relative image and smaller note.
+- Preserve the entire supplied image via object-fit: contain. Face clearance and final image placement cannot be verified until the selected beach photograph is available. This iteration replaces the active scroll hero with static typography; the prior motion implementation remains in checkpoint 44a6228 and its existing component.
+- Verification: production build, explicit TypeScript, all 176 existing tests, and git diff checks passed. Lint has only the pre-existing unused RSVP import warning. Desktop (1440×1000 viewport) and mobile (390×844 viewport) were visually reviewed in a separate Edge responsive preview; full-page screenshots are ../review/hero-desktop.png and ../review/hero-mobile.png. Chrome was not controlled. Screenshots show the labelled pending frame; this is layout verification, not photograph/crop approval.
+- Earlier work was committed as 44a6228; the subsequent Celebrations rename/date-range change was committed separately as 04e153d. This hero iteration remains available for review in the working tree.
 
 ## Homepage captions and idle settlement — 2026-11-12
 

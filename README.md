@@ -2,7 +2,17 @@
 
 An English-only wedding website for Talia and Craig: RSVP management, an event schedule, a gift/bank-details page, a couple's-story timeline, hotel recommendations, and an admin dashboard with a drag-and-drop seating planner. English pages use /en; old /de links redirect to the matching English page. See PROJECT_BRIEF.md, DESIGN.md, and DESIGN_DECISIONS.md for the current requirements.
 
-This started as a real wedding website and was turned into a template afterward — the structure and features are all proven in production; what's missing is *your* content.
+This project started from a wedding website template. Current development is local; use the status sources below for implemented features, verification limits, and remaining work.
+
+## Project status and pending work
+
+- [BACKLOG.md](BACKLOG.md) tracks open decisions, required inputs, unfinished integrations, and optional ideas without a current home.
+- [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md) records the accepted design and verification results; [PROJECT_BRIEF.md](PROJECT_BRIEF.md) and [DESIGN.md](DESIGN.md) describe current requirements.
+- `../feature_list.txt` is the original implementation queue outside this Git repository. [AGENTS.md](AGENTS.md) instructs future sessions to review these sources alongside the actual code when answering status or pending-work questions.
+
+The guest-versus-couple credential decision and selective-event guest lists are explicitly pending. Do not store guest lists or issued credentials in these documents.
+
+The celebrations programme is at `/en/events`. During local development, `/en/events?preview=planning` shows all four planned days; production ignores this preview parameter. The current guest view shows the welcome party and wedding. Roce/pool-party matching remains disabled until the credential model and guest lists are decided. Schedule content lives in `src/config/celebrations.ts`; optional `databaseEventId` values link existing database records for confirmed detail without seeding or guessing event times.
 
 ## Tech Stack
 
