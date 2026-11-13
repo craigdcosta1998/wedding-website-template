@@ -34,7 +34,7 @@ Homepage tokens live in src/components/editorial/journal.module.css. Keep them s
 - Reduced motion and no JavaScript: readable static announcement/location captions beneath the photograph. Moving duplicates are hidden from assistive technology; the static month and heading remain available. These fallbacks are part of the design.
 - Mobile: portrait-oriented crop, compact introduction, reserved right gutter for vertical Florence, smaller border labels and final caption, and stacked contents links. Avoid horizontal scrolling.
 - Tablet: preserve the asymmetry with a smaller margin and stack chapter descriptions as needed.
-- Homepage navigation includes Our Story, The Weekend (/events), Where to Stay (/hotels), Gifts, and RSVP. Do not create dead links to planned routes.
+- Homepage navigation includes Our Story, The Celebrations (/events), Where to Stay (/hotels), Gifts, and RSVP. Show the confirmed September 12–15, 2027 range in the homepage celebrations listing. Do not create dead links to planned routes.
 - Mobile navigation is a disclosure with expanded state, Escape-to-close, and a visible keyboard focus treatment. Include a skip-to-content link.
 
 ## Photograph handoff

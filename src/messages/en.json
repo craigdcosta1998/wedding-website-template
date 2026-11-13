@@ -17,7 +17,7 @@
   "nav": {
     "home": "Home",
     "rsvp": "RSVP",
-    "events": "Schedule",
+    "events": "The celebrations",
     "accommodation": "Hotels",
     "ourStory": "Our Story",
     "gift": "Gifts"
@@ -32,8 +32,7 @@
     "welcome": "A few days in Italy. Our favourite people.",
     "story": "Our story",
     "storyDetail": "A little about the two of us",
-    "weekend": "The weekend",
-    "weekendDetail": "The celebrations",
+    "celebrations": "The celebrations",
     "stay": "Where to stay",
     "stayDetail": "Make yourself at home",
     "gifts": "Gifts",
@@ -81,7 +80,7 @@
     "noEventsSelected": "Not attending"
   },
   "events": {
-    "title": "Schedule",
+    "title": "The celebrations",
     "schedule": "Timeline",
     "ceremony": "Ceremony",
     "reception": "Reception",

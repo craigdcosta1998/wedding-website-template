@@ -14,7 +14,7 @@ export function EditorialHeader() {
   const menuButton = useRef<HTMLButtonElement>(null);
   const nav = [
     { href: '/our-story', label: t('story') },
-    { href: '/events', label: t('weekend') },
+    { href: '/events', label: t('celebrations') },
     { href: '/hotels', label: t('stay') },
     { href: '/gift', label: t('gifts') },
     { href: '/rsvp', label: t('rsvp') },

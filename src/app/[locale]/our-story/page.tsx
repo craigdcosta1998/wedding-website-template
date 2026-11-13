@@ -1,5 +1,5 @@
 ﻿// ABOUTME: Our Story as a photography-led editorial page with structured, user-supplied content
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { WEDDING_CONFIG } from '@/config/wedding';
@@ -11,6 +11,7 @@ import styles from '@/components/editorial/our-story.module.css';
 export default async function OurStoryPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const t = await getTranslations('journal');
   const { chapters } = STORY_CONTENT;
   const firstChapter = chapters[0];
   const hasPendingContent = !STORY_CONTENT.portrait || chapters.some(chapter => !chapter.photo || chapter.paragraphs.length === 0);
@@ -63,7 +64,7 @@ export default async function OurStoryPage({ params }: { params: Promise<{ local
           <div>
             <h2 id="next-chapter-title" className={styles.closingTitle}>To be continued,<br /><span>in {WEDDING_CONFIG.locationDetails.city}.</span></h2>
             <time dateTime={WEDDING_CONFIG.weddingDate} className={styles.closingDate}>{WEDDING_CONFIG.weddingDateDisplay.en} / {WEDDING_CONFIG.locationDetails.country}</time>
-            <Link href="/events" className={journal.textLink}>The wedding weekend <ArrowUpRight size={17} strokeWidth={1} aria-hidden="true" /></Link>
+            <Link href="/events" className={journal.textLink}>{t('celebrations')} <ArrowUpRight size={17} strokeWidth={1} aria-hidden="true" /></Link>
           </div>
         </section>
       </div>

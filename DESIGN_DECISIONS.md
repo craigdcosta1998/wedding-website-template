@@ -13,6 +13,7 @@
 - Journal aesthetics are implicit. Remove the public journal/edition title.
 - Browser tabs use the coffee emoji as the favicon and the short title "T & C". Page headings retain the full couple names.
 - Wedding date: September 14, 2027 (the user corrected an initial 2026 typo). Public location: "Florence, Italy", replacing "Florence / Tuscany, Italy".
+- Celebrations run September 12–15, 2027. Use "The Celebrations" for the /events section, replacing "The Weekend"; show the range in the homepage listing. Individual event dates/times remain unassigned.
 - Latest hero copy: "We're getting married" moves from the top frame to the large caption below. "Florence" replaces the moving date, retaining its smaller serif/oxblood typography and rotation. "September 2027" stays static beside RSVP. At rest, captions settle to an endpoint using a halfway threshold.
 
 ## Homepage captions and idle settlement — 2026-11-12
@@ -21,6 +22,12 @@
 - Continue following scroll position while scrolling. After 150ms idle, or native scrollend, ease both captions to the frame below 50% progress or below the photograph from 50% onward, over 320ms. Defer settlement while a pointer/touch is held. Rebase resumed scrolling at the displayed pose to avoid a jump back to the middle. Do not change the visitor's scroll position.
 - Keep reduced-motion/no-JavaScript static captions and responsive type sizes. Retain the multipage navigation, Our Story work, and existing backend functionality.
 - Verification: all 176 tests passed, including 15 cover-motion tests for movement, threshold behavior, continuous scrolling, pointer holds, resumed/interrupted settlement, restored scroll position, reduced motion, resizing, and cleanup. Production build and explicit TypeScript passed; lint has only the existing RSVP unused-import warning. HTTP checks returned 200 and confirmed the new captions/static month and removal of the old note/moving date. Browser visual review was not performed; the user asked to stop controlling Chrome.
+
+## Celebrations naming — 2026-11-12
+
+- The user confirmed celebrations from September 12 to September 15, 2027, so "The Weekend" no longer fits. Rename the editorial navigation, homepage listing, Our Story closing link, standard navigation, and events page heading to "The Celebrations". Keep the existing /events route.
+- Store the date range in shared wedding configuration and derive its display text for the homepage listing. Keep "September 2027" static beside RSVP as requested. Individual events still use their existing database-backed schedule.
+- Verification: production build and explicit TypeScript passed; lint retains the existing RSVP unused-import warning. Home, Our Story, and Hotels returned HTTP 200, showed "The Celebrations", and contained no "weekend" wording. The homepage listing showed the derived date range. Browser visual review remains pending.
 
 Matching-date refinement verified on 2026-11-09: all 166 tests, production build, and explicit TypeScript passed. Lint has only the existing RSVP unused-import warning. HTTP/CSS checks confirmed the location and date share the same font family, size, and colour rule in the served stylesheet. The right gutter and caption flow reserve space for the larger date. Browser visual review remains pending.
 
@@ -65,7 +72,7 @@ Verification: all 161 existing tests passed; lint passed with the existing RSVP 
 ## Remaining inputs and limitations
 
 - Approved couple photograph and crop selection.
-- Venues, event timings, dates for the other weekend events, contact details, hotel recommendations, and final guest-facing copy.
+- Venues, individual event dates/times within September 12–15, contact details, hotel recommendations, and final guest-facing copy.
 - The calendar download holds September 14, 2027 as an all-day date with an exclusive September 15 end. Event times remain unconfirmed.
 - Existing database-backed pages require Supabase configuration and live verification. Admin pages/seating additionally require the server-only ADMIN_USER_IDS allowlist.
 - Admin authorization work predates this homepage pass and remains in the working tree. Do not overwrite it or assume it has been committed.

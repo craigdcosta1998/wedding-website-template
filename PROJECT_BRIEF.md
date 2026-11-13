@@ -7,6 +7,7 @@ This is the wedding website for Talia and Craig.
 Wedding:
 - Florence, Italy
 - Wedding day: September 14, 2027
+- Celebrations: September 12–15, 2027
 - Approximately 150–200 guests
 - Multi-day destination wedding
 
@@ -63,7 +64,7 @@ Home
 Our Story
 
 The Wedding
-- The Weekend
+- The Celebrations
 - Welcome
 - Roce
 - Ceremony & Reception
@@ -111,9 +112,9 @@ September 2027
 
 The homepage is primarily an entrance into the rest of the website, not a page containing every piece of wedding information.
 
-## Wedding weekend
+## Wedding celebrations
 
-The wedding consists of several events:
+The celebrations run September 12–15, 2027 and consist of several events:
 
 1. Welcome event
 2. Roce

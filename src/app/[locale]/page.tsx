@@ -16,7 +16,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   const photo = HOMEPAGE_CONFIG.heroPhoto;
   const chapters = [
     { href: '/our-story', title: t('story'), detail: t('storyDetail') },
-    { href: '/events', title: t('weekend'), detail: t('weekendDetail') },
+    { href: '/events', title: t('celebrations'), detail: WEDDING_CONFIG.celebrationDateRange },
     { href: '/hotels', title: t('stay'), detail: t('stayDetail') },
   ];
 

@@ -7,6 +7,10 @@ const weddingDate = '2027-09-14';
 const weddingDay = new Date(`${weddingDate}T00:00:00Z`);
 const nextDay = new Date(weddingDay.getTime() + 24 * 60 * 60 * 1000);
 const weddingLocation = { city: 'Florence', country: 'Italy' } as const;
+const celebrationDates = { start: '2027-09-12', end: '2027-09-15' } as const;
+const celebrationDateRange = new Intl.DateTimeFormat('en-US', {
+  month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC',
+}).formatRange(new Date(`${celebrationDates.start}T00:00:00Z`), new Date(`${celebrationDates.end}T00:00:00Z`));
 
 export const WEDDING_CONFIG = {
   coupleNames: 'Talia & Craig',
@@ -15,6 +19,8 @@ export const WEDDING_CONFIG = {
     partner2: 'Craig',
   },
   weddingDate,
+  celebrationDates,
+  celebrationDateRange,
   weddingDateParts: {
     day: weddingDay.toLocaleDateString('en-US', { day: 'numeric', timeZone: 'UTC' }),
     monthNumber: weddingDay.toLocaleDateString('en-US', { month: '2-digit', timeZone: 'UTC' }),
