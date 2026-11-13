@@ -1,6 +1,10 @@
 // ABOUTME: Pure utility functions for middleware routing decisions, extracted for testability
 
-const LOCALE_PATTERN = /^\/(de|en)/;
+const LOCALE_PATTERN = /^\/en(?=\/|$)/;
+
+export function getLegacyLocaleRedirect(pathname: string): string | null {
+  return /^\/de(?=\/|$)/.test(pathname) ? pathname.replace(/^\/de/, '/en') : null;
+}
 
 function stripLocale(pathname: string): string {
   return pathname.replace(LOCALE_PATTERN, '') || '/';

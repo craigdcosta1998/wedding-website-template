@@ -137,10 +137,10 @@ export function OpenRsvpForm({ events }: OpenRsvpFormProps) {
 VERSION:2.0
 PRODID:-//Wedding Website//EN
 BEGIN:VEVENT
-DTSTART:${WEDDING_CONFIG.weddingDateIcs.start}
-DTEND:${WEDDING_CONFIG.weddingDateIcs.end}
+DTSTART;VALUE=DATE:${WEDDING_CONFIG.weddingDateIcs.start}
+DTEND;VALUE=DATE:${WEDDING_CONFIG.weddingDateIcs.end}
 SUMMARY:${WEDDING_CONFIG.coupleNames} - Wedding
-LOCATION:${WEDDING_CONFIG.location}
+LOCATION:${WEDDING_CONFIG.location.replaceAll(',', '\\,')}
 DESCRIPTION:Wedding celebration of ${WEDDING_CONFIG.coupleFirstNames.partner1} and ${WEDDING_CONFIG.coupleFirstNames.partner2}
 END:VEVENT
 END:VCALENDAR`;

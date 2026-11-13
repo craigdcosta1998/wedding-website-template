@@ -2,6 +2,7 @@
 'use server';
 
 import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/admin-auth';
 
 export interface SeatingActionResult {
   success: boolean;
@@ -16,6 +17,7 @@ const DEFAULT_SEAT_COUNT = 8;
 
 export async function createTable(name: string, sortOrder: number): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { data: table, error } = await supabase
       .from('seating_tables')
@@ -40,6 +42,7 @@ export async function createTable(name: string, sortOrder: number): Promise<Seat
 
 export async function renameTable(tableId: string, name: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase.from('seating_tables').update({ name }).eq('id', tableId);
     if (error) throw error;
@@ -51,6 +54,7 @@ export async function renameTable(tableId: string, name: string): Promise<Seatin
 
 export async function updateTableNote(tableId: string, note: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase
       .from('seating_tables')
@@ -65,6 +69,7 @@ export async function updateTableNote(tableId: string, note: string): Promise<Se
 
 export async function deleteTable(tableId: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase.from('seating_tables').delete().eq('id', tableId);
     if (error) throw error;
@@ -76,6 +81,7 @@ export async function deleteTable(tableId: string): Promise<SeatingActionResult>
 
 export async function addSeat(tableId: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { data: seats, error: fetchError } = await supabase
       .from('seating_seats')
@@ -99,6 +105,7 @@ export async function addSeat(tableId: string): Promise<SeatingActionResult> {
 /** Removes the last empty seat in the table. Errors if every seat is occupied. */
 export async function removeSeat(tableId: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { data: emptySeats, error: fetchError } = await supabase
       .from('seating_seats')
@@ -123,6 +130,7 @@ export async function removeSeat(tableId: string): Promise<SeatingActionResult> 
 
 export async function placeGuest(guestId: string, seatId: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase.rpc('place_guest', { p_guest_id: guestId, p_seat_id: seatId });
     if (error) throw error;
@@ -134,6 +142,7 @@ export async function placeGuest(guestId: string, seatId: string): Promise<Seati
 
 export async function placeGuestInTable(guestId: string, tableId: string): Promise<PlaceInTableResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { data, error } = await supabase.rpc('place_guest_in_table', {
       p_guest_id: guestId,
@@ -148,6 +157,7 @@ export async function placeGuestInTable(guestId: string, tableId: string): Promi
 
 export async function unseatGuest(guestId: string): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase.rpc('unseat_guest', { p_guest_id: guestId });
     if (error) throw error;
@@ -162,6 +172,7 @@ export async function setSeatPreference(
   otherGuestId: string | null
 ): Promise<SeatingActionResult> {
   try {
+    await requireAdmin();
     const supabase = await createServiceClient();
     const { error } = await supabase
       .from('guests')

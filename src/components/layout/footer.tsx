@@ -4,9 +4,14 @@
 import { useTranslations } from 'next-intl';
 import { Heart } from 'lucide-react';
 import { WEDDING_CONFIG } from '@/config/wedding';
+import { usePathname } from '@/i18n/routing';
+import { EditorialFooter } from '@/components/editorial/site-chrome';
 
 export function Footer() {
   const t = useTranslations('footer');
+  const pathname = usePathname();
+
+  if (pathname === '/' || pathname === '/our-story') return <EditorialFooter />;
 
   return (
     <footer className="border-t py-8 mt-auto">

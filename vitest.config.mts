@@ -1,7 +1,7 @@
 // ABOUTME: Vitest configuration with jsdom environment and Next.js path aliases
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
-import path from 'path';
+import { fileURLToPath } from 'node:url';
 
 export default defineConfig({
   plugins: [react()],
@@ -12,7 +12,9 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      // Match Next's server-side marker resolution when testing Server Components/actions.
+      'server-only': fileURLToPath(new URL('./node_modules/next/dist/compiled/server-only/empty.js', import.meta.url)),
     },
   },
 });

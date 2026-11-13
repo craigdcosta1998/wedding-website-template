@@ -1,5 +1,7 @@
 # Wedding Website Template
 
+Current project overrides: this is Talia & Craig's English-only wedding website. Read AGENTS.md, PROJECT_BRIEF.md, DESIGN.md, and DESIGN_DECISIONS.md before working. Their current requirements supersede the historical bilingual template guidance below. English routes use /en; legacy /de links redirect to English. Do not reintroduce German translations or language controls.
+
 A bilingual (German/English) wedding website built with Next.js 16, featuring RSVP management, event scheduling, an admin dashboard, and a drag-and-drop seating planner.
 
 ## Customizing this template

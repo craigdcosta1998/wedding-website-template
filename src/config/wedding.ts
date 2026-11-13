@@ -1,25 +1,38 @@
 // ABOUTME: Single source of truth for couple names, wedding date, and contact/payment details
 //
-// Start here. Every value below is a placeholder — replace them with your own and most of the
-// site (page titles, the RSVP calendar download, confirmation emails, the gift page) updates
-// automatically. See README.md's "Make it yours" section for what else to touch.
+// Names, date, and city are approved in PROJECT_BRIEF.md.
+// Event times, contact/payment details, and sender address remain unconfirmed.
+// See DESIGN_DECISIONS.md before treating any remaining logistics as final.
+const weddingDate = '2027-09-14';
+const weddingDay = new Date(`${weddingDate}T00:00:00Z`);
+const nextDay = new Date(weddingDay.getTime() + 24 * 60 * 60 * 1000);
+const weddingLocation = { city: 'Florence', country: 'Italy' } as const;
+
 export const WEDDING_CONFIG = {
-  coupleNames: 'Partner One & Partner Two',
+  coupleNames: 'Talia & Craig',
   coupleFirstNames: {
-    partner1: 'Partner One',
-    partner2: 'Partner Two',
+    partner1: 'Talia',
+    partner2: 'Craig',
   },
-  weddingMonthYear: 'Month Year',
+  weddingDate,
+  weddingDateParts: {
+    day: weddingDay.toLocaleDateString('en-US', { day: 'numeric', timeZone: 'UTC' }),
+    monthNumber: weddingDay.toLocaleDateString('en-US', { month: '2-digit', timeZone: 'UTC' }),
+    month: weddingDay.toLocaleDateString('en-US', { month: 'long', timeZone: 'UTC' }),
+    year: weddingDay.toLocaleDateString('en-US', { year: 'numeric', timeZone: 'UTC' }),
+  },
+  weddingMonthYear: weddingDay.toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
   weddingDateDisplay: {
-    de: 'TT. Monat JJJJ',
-    en: 'Month Day, Year',
+    de: weddingDay.toLocaleDateString('de-DE', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }),
+    en: weddingDay.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }),
   },
-  // Floating local-time values (no timezone suffix) for the .ics calendar download
+  // Date-only calendar hold. DTEND is exclusive; no event time has been approved.
   weddingDateIcs: {
-    start: '20260101T190000',
-    end: '20260102T050000',
+    start: weddingDate.replaceAll('-', ''),
+    end: nextDay.toISOString().slice(0, 10).replaceAll('-', ''),
   },
-  location: 'City, Country',
+  location: `${weddingLocation.city}, ${weddingLocation.country}`,
+  locationDetails: weddingLocation,
   contactEmail: 'your-email@example.com',
   fromEmail: 'wedding@example.com',
   bankDetails: {

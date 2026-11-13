@@ -2,19 +2,22 @@
 import createIntlMiddleware from 'next-intl/middleware';
 import { type NextRequest, NextResponse } from 'next/server';
 import { routing } from './i18n/routing';
-import { shouldCheckPassword, shouldCheckAdminAuth } from './middleware-utils';
+import { getLegacyLocaleRedirect, shouldCheckPassword, shouldCheckAdminAuth } from './middleware-utils';
+import { defaultLocale } from './i18n/config';
 import { verifyPasswordToken } from './lib/password';
 import { createMiddlewareSupabaseClient } from './lib/supabase/middleware';
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-function getLocaleFromPath(pathname: string): string {
-  const match = pathname.match(/^\/(de|en)/);
-  return match ? match[1]! : 'de';
-}
-
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const englishPath = getLegacyLocaleRedirect(pathname);
+  if (englishPath) {
+    const url = request.nextUrl.clone();
+    url.pathname = englishPath;
+    return NextResponse.redirect(url, 308);
+  }
 
   // Check admin auth for /admin/* paths (except /admin/login)
   if (shouldCheckAdminAuth(pathname)) {
@@ -22,8 +25,7 @@ export async function middleware(request: NextRequest) {
     const { data: { user } } = await supabase.auth.getUser();
 
     if (!user) {
-      const locale = getLocaleFromPath(pathname);
-      const loginUrl = new URL(`/${locale}/admin/login`, request.url);
+      const loginUrl = new URL(`/${defaultLocale}/admin/login`, request.url);
       return NextResponse.redirect(loginUrl);
     }
 
@@ -38,8 +40,7 @@ export async function middleware(request: NextRequest) {
       const token = request.cookies.get('site_access')?.value;
 
       if (!token || !(await verifyPasswordToken(token, sitePassword))) {
-        const locale = getLocaleFromPath(pathname);
-        const passwordUrl = new URL(`/${locale}/password`, request.url);
+        const passwordUrl = new URL(`/${defaultLocale}/password`, request.url);
         return NextResponse.redirect(passwordUrl);
       }
     }

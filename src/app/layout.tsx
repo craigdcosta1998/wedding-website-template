@@ -21,7 +21,7 @@ const metadataTitle = `${WEDDING_CONFIG.coupleNames} | ${WEDDING_CONFIG.weddingM
 const metadataDescription = `Join us for our wedding celebration in ${WEDDING_CONFIG.location}`;
 
 export const metadata: Metadata = {
-  title: metadataTitle,
+  title: 'T & C',
   description: metadataDescription,
   icons: {
     icon: '/icon.svg',
@@ -39,7 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${oswald.variable} ${crimsonText.variable} antialiased min-h-screen`}
       >

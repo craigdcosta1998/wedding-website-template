@@ -1,6 +1,6 @@
 # Wedding Website Template
 
-A bilingual (German/English) wedding website: RSVP management, an event schedule, a gift/bank-details page, a couple's-story timeline, hotel recommendations, and an admin dashboard with a drag-and-drop seating planner.
+An English-only wedding website for Talia and Craig: RSVP management, an event schedule, a gift/bank-details page, a couple's-story timeline, hotel recommendations, and an admin dashboard with a drag-and-drop seating planner. English pages use /en; old /de links redirect to the matching English page. See PROJECT_BRIEF.md, DESIGN.md, and DESIGN_DECISIONS.md for the current requirements.
 
 This started as a real wedding website and was turned into a template afterward — the structure and features are all proven in production; what's missing is *your* content.
 
@@ -44,6 +44,7 @@ NEXT_PUBLIC_SITE_URL=http://localhost:3000
 1. Create a project at [supabase.com](https://supabase.com).
 2. Open the SQL Editor and run every file in `supabase/migrations/` **in order**, `00001` through `00006`.
 3. Create yourself an admin login: Supabase dashboard → Authentication → Users → Add User. That email/password is what you'll use to log into `/admin`.
+4. Copy that user's Auth UUID into the server-only `ADMIN_USER_IDS` environment variable. For multiple admins, separate UUIDs with commas. An empty or unset allowlist denies all admin data pages and seating actions; signing in alone does not grant admin access. Restart the server after changing the allowlist.
 
 ### 4. Run it
 
@@ -60,10 +61,10 @@ Start here, in this order:
 1. **`src/config/wedding.ts`** — couple names, wedding date, contact email, bank details. Everything else on the site (page titles, the RSVP calendar download, confirmation emails, the gift page) reads from this one file.
 2. **Content pages with placeholder text** — search for `[` in these files, each marks something to replace:
    - `src/app/[locale]/our-story/page.tsx` — your story, one section per chapter
-   - `src/app/[locale]/hotels/page.tsx` + `src/messages/{de,en}.json`'s `accommodation.example` — add one card per hotel recommendation
-   - `src/messages/{de,en}.json`'s `gift.honeymoon` / `gift.story` — your gift-registry message
+   - `src/app/[locale]/hotels/page.tsx` + `src/messages/en.json`'s `accommodation.example` — add one card per hotel recommendation
+   - `src/messages/en.json`'s `gift.honeymoon` / `gift.story` — your gift-registry message
    - `src/components/events/witness-contact-card.tsx` — your wedding party's contact details
-3. **Your own events** — this template ships with no seeded events (the original had "Get Together", "Ceremony", "Dinner & Party" hardcoded — deliberately removed). Add yours via the Supabase dashboard's **Table Editor** → `events` table → Insert row. No SQL needed; fill in the form fields (name in both languages, date, venue, address, dress code, etc.).
+3. **Your own events** — this template ships with no seeded events (the original had "Get Together", "Ceremony", "Dinner & Party" hardcoded — deliberately removed). Add yours via the Supabase dashboard's **Table Editor** → `events` table → Insert row. No SQL needed; fill in the English event fields, date, venue, address, and dress code; legacy German columns remain in the schema.
 4. **Photos** — this template ships with no images beyond a couple of generic decorative textures and icons. Add your own under `public/` and reference them from the pages above (e.g. a hero image on the home page, photos per chapter of your story).
 
 ## Using Claude Code to customize this
@@ -97,7 +98,7 @@ src/
 ├── emails/             # React Email templates
 ├── i18n/                # next-intl routing config
 ├── lib/                # Utilities, Supabase clients, seating logic
-├── messages/            # Translations (de.json, en.json)
+├── messages/            # English messages (en.json)
 └── types/               # TypeScript types, including the Supabase schema
 supabase/
 └── migrations/          # Run 00001–00006 in order against a fresh project

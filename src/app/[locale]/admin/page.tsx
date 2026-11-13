@@ -4,6 +4,7 @@ export const dynamic = 'force-dynamic';
 import { setRequestLocale } from 'next-intl/server';
 import { getTranslations } from 'next-intl/server';
 import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import type { AgeCategory } from '@/types/database';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,6 +18,7 @@ interface AdminPageProps {
 }
 
 export default async function AdminPage({ params }: AdminPageProps) {
+  await requireAdmin();
   const { locale } = await params;
   setRequestLocale(locale);
 

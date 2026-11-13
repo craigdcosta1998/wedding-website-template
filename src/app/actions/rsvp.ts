@@ -32,7 +32,7 @@ function buildDietaryString(preference: string, other: string): string | null {
 
 export async function submitOpenRsvp(
   data: OpenRsvpData,
-  locale: 'de' | 'en' = 'de'
+  locale: 'de' | 'en' = 'en'
 ): Promise<RsvpResult> {
   const validation = validateRsvpSubmission(data);
   if (!validation.valid) {

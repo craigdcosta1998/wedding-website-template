@@ -1,22 +1,22 @@
-// ABOUTME: Main header component with navigation and language toggle
+// ABOUTME: Main header with English navigation and a homepage editorial variant
 'use client';
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/routing';
-import { useLocale } from 'next-intl';
+import { EditorialHeader } from '@/components/editorial/site-chrome';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { LanguageToggle } from './language-toggle';
 import { WEDDING_CONFIG } from '@/config/wedding';
 
 const logoInitials = `${WEDDING_CONFIG.coupleFirstNames.partner1[0]} & ${WEDDING_CONFIG.coupleFirstNames.partner2[0]}`;
 
 export function Header() {
   const t = useTranslations('nav');
-  const locale = useLocale();
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  if (pathname === '/' || pathname === '/our-story') return <EditorialHeader />;
 
   const navItems: { href: string; label: string; disabled?: boolean }[] = [
     { href: '/', label: t('home') },
@@ -62,12 +62,10 @@ export function Header() {
               </Link>
             )
           ))}
-          <LanguageToggle />
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <LanguageToggle />
           <Button
             variant="ghost"
             size="icon"

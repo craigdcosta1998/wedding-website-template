@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic';
 
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { createServiceClient } from '@/lib/supabase/server';
+import { requireAdmin } from '@/lib/admin-auth';
 import { LogoutButton } from '@/components/admin/logout-button';
 import { SeatingBoard } from '@/components/admin/seating/seating-board';
 import { Link } from '@/i18n/routing';
@@ -13,6 +14,7 @@ interface SeatingPageProps {
 }
 
 export default async function SeatingPage({ params }: SeatingPageProps) {
+  await requireAdmin();
   const { locale } = await params;
   setRequestLocale(locale);
 

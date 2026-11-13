@@ -12,9 +12,7 @@
     "success": "Success",
     "yes": "Yes",
     "no": "No",
-    "language": "Language",
-    "german": "Deutsch",
-    "english": "English"
+    "language": "Language"
   },
   "nav": {
     "home": "Home",
@@ -23,6 +21,28 @@
     "accommodation": "Hotels",
     "ourStory": "Our Story",
     "gift": "Gifts"
+  },
+  "journal": {
+    "announcement": "We're getting married",
+    "invitation": "A little Italian chapter. A lifetime together.",
+    "portrait": "The portrait",
+    "photoPlaceholder": "Our photograph goes here",
+    "photoPending": "Couple portrait to be added",
+    "contents": "Explore",
+    "welcome": "A few days in Italy. Our favourite people.",
+    "story": "Our story",
+    "storyDetail": "A little about the two of us",
+    "weekend": "The weekend",
+    "weekendDetail": "The celebrations",
+    "stay": "Where to stay",
+    "stayDetail": "Make yourself at home",
+    "gifts": "Gifts",
+    "rsvp": "RSVP",
+    "home": "Home",
+    "navigation": "Main navigation",
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content"
   },
   "home": {
     "title": "Welcome to Our Wedding",
