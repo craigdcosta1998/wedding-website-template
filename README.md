@@ -14,6 +14,12 @@ The guest-versus-couple credential decision and selective-event guest lists are 
 
 The celebrations programme is at `/en/events`. During local development, `/en/events?preview=planning` shows all four planned days; production ignores this preview parameter. The current guest view shows the welcome party and wedding. Roce/pool-party matching remains disabled until the credential model and guest lists are decided. Schedule content lives in `src/config/celebrations.ts`; optional `databaseEventId` values link existing database records for confirmed detail without seeding or guessing event times.
 
+## Review every significant change
+
+[REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md) defines the required independent design and technical reviews: both check the proposed approach before implementation and the result after every significant website change, including local work with no deployment planned. Both final reviews are required before marking the change complete or starting unrelated significant work. The project-scoped reviewer definitions are in `.codex/agents/`; [AGENTS.md](AGENTS.md) makes this workflow part of future project work. Before a later push or deployment, verify the contents still match the reviewed candidate.
+
+This local workflow does not configure GitHub/Vercel deployment enforcement. No hosting settings are changed by installing the reviewers.
+
 ## Tech Stack
 
 - Next.js 16 (App Router)
@@ -71,7 +77,7 @@ Start here, in this order:
 1. **`src/config/wedding.ts`** — couple names, wedding date, contact email, bank details. Everything else on the site (page titles, the RSVP calendar download, confirmation emails, the gift page) reads from this one file.
 2. **Content pages with placeholder text** — search for `[` in these files, each marks something to replace:
    - `src/app/[locale]/our-story/page.tsx` — your story, one section per chapter
-   - `src/app/[locale]/hotels/page.tsx` + `src/messages/en.json`'s `accommodation.example` — add one card per hotel recommendation
+   - `src/config/stay.ts` — add approved Florence/countryside hotel recommendations and official booking links. Empty areas show an honest pending state; no example ratings, prices, or booking arrangements are published. `src/messages/en.json`'s `accommodation` holds the page introduction.
    - `src/messages/en.json`'s `gift.honeymoon` / `gift.story` — your gift-registry message
    - `src/components/events/witness-contact-card.tsx` — your wedding party's contact details
 3. **Your own events** — this template ships with no seeded events (the original had "Get Together", "Ceremony", "Dinner & Party" hardcoded — deliberately removed). Add yours via the Supabase dashboard's **Table Editor** → `events` table → Insert row. No SQL needed; fill in the English event fields, date, venue, address, and dress code; legacy German columns remain in the schema.

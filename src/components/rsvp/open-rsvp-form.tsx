@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Checkbox } from '@/components/ui/checkbox';
 import { submitOpenRsvp } from '@/app/actions/rsvp';
@@ -16,14 +16,7 @@ import type { DietaryPreference } from '@/types/database';
 import { Loader2, Plus, Trash2, CheckCircle, CalendarPlus } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { WEDDING_CONFIG } from '@/config/wedding';
-
-export interface RsvpEvent {
-  id: string;
-  name_de: string;
-  name_en: string;
-  event_date: string;
-  location_name: string;
-}
+import type { RsvpEvent } from '@/types/rsvp';
 
 interface OpenRsvpFormProps {
   events: RsvpEvent[];
@@ -53,9 +46,7 @@ function formatEventDate(dateString: string, locale: string): string {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: 'Europe/Berlin',
+    timeZone: 'UTC',
   });
   return formatted;
 }
@@ -297,7 +288,7 @@ END:VCALENDAR`;
                           />
                           <div className="flex-1 min-w-0">
                             <p className="font-medium text-sm">
-                              {locale === 'de' ? event.name_de : event.name_en}
+                              {event.name_en}
                             </p>
                             <p className="text-xs text-muted-foreground">
                               {formatEventDate(event.event_date, locale)} &middot; {event.location_name}

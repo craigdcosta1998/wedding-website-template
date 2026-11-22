@@ -44,6 +44,20 @@ Where content is likely to change, prefer structured configuration/data.
 
 ## Workflow
 
+### Required independent reviews
+
+Follow [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md). The user explicitly requested separate design and technical reviewer agents before substantive implementation and after every significant website change, regardless of deployment.
+
+- The **primary implementation agent** must spawn both `design_reviewer` and `technical_reviewer` for a preflight review of the proposed approach before substantive implementation. Wait for both reports and resolve approach blockers before editing.
+- After each coherent significant change and applicable checks, obtain both independent final reviews of the actual candidate before marking it complete or starting unrelated significant work. This applies to local and uncommitted changes even when no push or deployment is planned. Fix blockers and renew affected reviews after later edits; stale sign-offs do not cover changed content.
+- Use the significance guidance in REVIEW_WORKFLOW.md; group related edits into one change rather than reviewing every keystroke. When uncertain, require review. Before any later push or deployment, verify the candidate still matches the reviewed contents; unchanged contents do not need a duplicate review just for deployment.
+- Read the definitions in [.codex/agents/design_reviewer.toml](.codex/agents/design_reviewer.toml) and [.codex/agents/technical_reviewer.toml](.codex/agents/technical_reviewer.toml). If named role selection is unavailable, pass each file's complete `developer_instructions` and task context to its separate spawned reviewer. A task name alone does not load the definition.
+- Reviewers inspect and report only: do not implement, publish, or spawn more reviewers. This section's orchestration requirements apply to the primary agent, preventing recursive review delegation.
+- Design review follows the latest approved project direction and requires current rendered evidence for UI approval. Explicitly report missing required verification. Design may be `NOT_APPLICABLE` only when there is no UI or website-content impact; technical review still applies.
+- Reviews remain scoped to the requested change. Separate blockers from optional suggestions, preserve deferred user decisions, and summarize both verdicts and verification limits. Reviewer approval does not authorize publication or enforce Git/Vercel restrictions.
+
+### Project records
+
 The user's feature queue for this workspace is ../feature_list.txt, in the project folder above this Git repository. Use that existing file; do not create another feature_list.txt inside the repository.
 
 Read [BACKLOG.md](BACKLOG.md) for open decisions, required follow-up, and optional ideas. [README.md](README.md#project-status-and-pending-work) links the project status sources. Keep the backlog current alongside the feature queue, recording completed items and changed decisions. Never store private guest lists or issued credentials in these files.

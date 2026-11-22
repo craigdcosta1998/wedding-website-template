@@ -67,4 +67,20 @@ describe('validateRsvpSubmission', () => {
     };
     expect(validateRsvpSubmission(data).valid).toBe(true);
   });
+
+  it.each([null, undefined, [], {}, { contactName: 1, contactEmail: false, guests: [] }])('rejects malformed payloads safely: %s', data => {
+    expect(validateRsvpSubmission(data).valid).toBe(false);
+  });
+
+  it.each([
+    { selectedEventIds: ['event-1', 'event-1'] },
+    { selectedEventIds: [null] },
+    { selectedEventIds: [''] },
+    { selectedEventIds: ['1', '2', '3', '4', '5'] },
+    { dietaryPreference: 'unsupported' },
+    { firstName: null },
+    { dietaryOther: null },
+  ])('rejects invalid guest fields: %s', fields => {
+    expect(validateRsvpSubmission({ ...validData, guests: [{ ...validData.guests[0], ...fields }] }).valid).toBe(false);
+  });
 });

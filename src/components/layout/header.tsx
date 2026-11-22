@@ -1,4 +1,4 @@
-// ABOUTME: Main header with English navigation and a homepage editorial variant
+// ABOUTME: Main header with English navigation and route-specific editorial variants
 'use client';
 
 import { useTranslations } from 'next-intl';
@@ -16,7 +16,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  if (pathname === '/' || pathname === '/our-story' || pathname === '/events') return <EditorialHeader />;
+  if (pathname === '/' || pathname === '/our-story' || pathname === '/events' || pathname === '/hotels') return <EditorialHeader />;
 
   const navItems: { href: string; label: string; disabled?: boolean }[] = [
     { href: '/', label: t('home') },

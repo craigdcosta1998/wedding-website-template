@@ -94,17 +94,8 @@
     "witnessesInfo": "If you have any questions regarding the schedule or any performances, please reach out to our witnesses."
   },
   "accommodation": {
-    "title": "Hotels",
-    "subtitle": "A few hotel recommendations near our venue.",
-    "perNight": "/ night",
-    "fromAbout": "from approx.",
-    "reviews": "reviews",
-    "example": {
-      "name": "[Hotel Name]",
-      "description": "[A short description of the hotel — replace this placeholder text.]",
-      "price": "from approx. €100 / night",
-      "distance": "[X] min walk to the venue"
-    }
+    "title": "Where to stay.",
+    "subtitle": "We’re gathering our recommendations for Florence and the surrounding countryside. We’ll share them here once confirmed."
   },
   "ourStory": {
     "title": "Our Story"

@@ -5,6 +5,7 @@ import { createServiceClient } from '@/lib/supabase/server';
 import { sendRsvpConfirmation } from '@/lib/email';
 import { validateRsvpSubmission } from '@/lib/rsvp-validation';
 import type { OpenRsvpData } from '@/lib/rsvp-validation';
+import { getOpenRsvpEvents } from '@/lib/rsvp-access';
 
 export type { OpenRsvpData, OpenRsvpGuest } from '@/lib/rsvp-validation';
 
@@ -40,6 +41,15 @@ export async function submitOpenRsvp(
   }
 
   try {
+    if (locale !== 'en') return { success: false, error: 'Please submit your RSVP in English' };
+    const catalogue = await getOpenRsvpEvents();
+    if (!catalogue.available) {
+      return { success: false, error: 'RSVP is not available yet. Please check back soon.' };
+    }
+    const allowedIds = new Set(catalogue.events.map(event => event.id));
+    if (data.guests.some(guest => guest.selectedEventIds.some(id => !allowedIds.has(id)))) {
+      return { success: false, error: 'Your event selection is not available. Please refresh and try again.' };
+    }
     const supabase = await createServiceClient();
 
     const { data: household, error: householdError } = await supabase
@@ -99,22 +109,7 @@ export async function submitOpenRsvp(
       }
     }
 
-    // Fetch event names for the confirmation email
-    const allSelectedEventIds = [...new Set(data.guests.flatMap((g) => g.selectedEventIds))];
-    let eventNameMap: Record<string, string> = {};
-
-    if (allSelectedEventIds.length > 0) {
-      const { data: eventsData } = await supabase
-        .from('events')
-        .select('id, name_de, name_en')
-        .in('id', allSelectedEventIds);
-
-      if (eventsData) {
-        eventNameMap = Object.fromEntries(
-          eventsData.map((e) => [e.id, locale === 'de' ? e.name_de : e.name_en])
-        );
-      }
-    }
+    const eventNameMap = Object.fromEntries(catalogue.events.map(event => [event.id, event.name_en]));
 
     if (data.contactEmail.trim()) {
       await sendRsvpConfirmation({

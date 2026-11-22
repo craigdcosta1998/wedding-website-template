@@ -3,8 +3,6 @@ import { Resend } from 'resend';
 import { RsvpConfirmationEmail } from '@/emails/rsvp-confirmation';
 import { WEDDING_CONFIG } from '@/config/wedding';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface SendRsvpConfirmationParams {
   to: string;
   householdName: string;
@@ -33,6 +31,7 @@ export async function sendRsvpConfirmation({
     : `RSVP Confirmation - ${WEDDING_CONFIG.coupleNames} Wedding`;
 
   try {
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const { data, error } = await resend.emails.send({
       from: `${WEDDING_CONFIG.coupleNames} <${WEDDING_CONFIG.fromEmail}>`,
       to: [to],

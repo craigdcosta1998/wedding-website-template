@@ -1,0 +1,40 @@
+/* ABOUTME: A quiet editorial accommodation guide with honest pending recommendations */
+.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 10%; align-items: end; padding-block: 76px 66px; }
+.overline { color: var(--terracotta); font-size: .875rem; line-height: 1.6; letter-spacing: .1em; text-transform: uppercase; }
+.title { max-width: 8ch; margin-top: 30px; font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(5rem, 8vw, 8rem); line-height: .95; font-weight: 400; letter-spacing: -.045em; color: var(--oxblood); }
+.introduction { max-width: 30rem; padding-bottom: 5px; }
+.invitation { max-width: 15ch; font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.15; color: var(--oxblood); }
+.introduction > p:last-child { margin-top: 24px; font-size: 1rem; line-height: 1.8; }
+.index { display: flex; flex-wrap: wrap; gap: 12px 38px; border-block: 1px solid var(--rule); padding-block: 12px; }
+.index a { display: inline-flex; align-items: center; min-height: 44px; color: var(--oxblood); font-size: .875rem; line-height: 1.6; }
+.index a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.area { display: grid; grid-template-columns: 1fr 1.7fr; gap: 10%; padding-block: 58px 66px; border-bottom: 1px solid var(--rule); scroll-margin-top: 28px; }
+.area h2 { max-width: 12ch; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(2.3rem, 4vw, 3.4rem); line-height: 1.1; letter-spacing: -.025em; font-weight: 400; }
+.areaBody { min-width: 0; max-width: 42rem; }
+.pending { color: var(--olive); font-size: 1rem; line-height: 1.8; max-width: 33rem; padding-top: 7px; }
+.recommendation + .recommendation { border-top: 1px solid var(--rule); margin-top: 32px; padding-top: 32px; }
+.recommendation h3 { font-family: var(--font-handwritten), Georgia, serif; font-size: 2rem; line-height: 1.2; font-weight: 400; color: var(--oxblood); }
+.recommendation p { margin-top: 16px; font-size: 1rem; line-height: 1.8; }
+.link { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; line-height: 1.6; color: var(--oxblood); text-decoration: underline; text-underline-offset: 6px; }
+.recommendation .link { margin-top: 16px; }
+.closing { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding-block: 34px 68px; }
+.closing p { max-width: 26rem; font-family: var(--font-handwritten), Georgia, serif; color: var(--olive); font-size: 1.5rem; line-height: 1.35; }
+
+@media (max-width: 1000px) {
+  .hero { grid-template-columns: 1fr; gap: 34px; padding-block: 56px 46px; }
+  .title { max-width: none; font-size: clamp(4.5rem, 10vw, 6.5rem); }
+  .introduction { max-width: 36rem; }
+  .invitation { max-width: none; font-size: 2rem; }
+  .area { gap: 7%; }
+}
+@media (max-width: 700px) {
+  .hero { gap: 28px; padding-block: 36px 34px; }
+  .title { max-width: 8ch; margin-top: 23px; font-size: clamp(4.1rem, 17vw, 6rem); }
+  .invitation { max-width: 16ch; font-size: 1.9rem; }
+  .introduction > p:last-child { margin-top: 20px; }
+  .index { gap: 24px; }
+  .area { grid-template-columns: 1fr; gap: 22px; padding-block: 36px 40px; }
+  .area h2 { max-width: none; font-size: 2.5rem; }
+  .pending { padding-top: 0; }
+  .closing { align-items: flex-start; flex-direction: column; gap: 14px; padding-block: 28px 44px; }
+}
