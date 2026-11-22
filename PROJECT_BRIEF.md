@@ -125,7 +125,7 @@ These are the user-supplied current venue plans, not a statement that bookings o
 
 Use a responsive editorial programme on /events, with date margins, large serif event names, venue typography, fine rules, and only the permitted entries in both the schedule and its navigation. The Roce and pool party are provisionally invitation-only and independently grantable. The credential unit (guest versus couple/household) is explicitly deferred; do not choose it or issue credentials yet. Keep private sections out of the guest response while matching is unimplemented. A development-only /en/events?preview=planning view shows all four days for local review and is ignored in production. Preserve existing database/RSVP/admin functions; link existing database event IDs explicitly for additional confirmed event details when ready.
 
-Open decisions and optional ideas belong in [BACKLOG.md](BACKLOG.md). Future project-status reviews should reconcile that file and ../feature_list.txt with the current code and verification notes.
+Open decisions and optional ideas belong in [BACKLOG.md](BACKLOG.md). Future project-status reviews should reconcile that file and feature_list.txt with the current code and verification notes.
 
 Therefore wedding information should be data-driven wherever practical rather than hard-coded repeatedly in components.
 

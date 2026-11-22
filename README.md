@@ -8,7 +8,7 @@ This project started from a wedding website template. Current development is loc
 
 - [BACKLOG.md](BACKLOG.md) tracks open decisions, required inputs, unfinished integrations, and optional ideas without a current home.
 - [DESIGN_DECISIONS.md](DESIGN_DECISIONS.md) records the accepted design and verification results; [PROJECT_BRIEF.md](PROJECT_BRIEF.md) and [DESIGN.md](DESIGN.md) describe current requirements.
-- `../feature_list.txt` is the original implementation queue outside this Git repository. [AGENTS.md](AGENTS.md) instructs future sessions to review these sources alongside the actual code when answering status or pending-work questions.
+- `feature_list.txt` is the implementation queue in the project root. [AGENTS.md](AGENTS.md) instructs future sessions to review these sources alongside the actual code when answering status or pending-work questions.
 
 The guest-versus-couple credential decision and selective-event guest lists are explicitly pending. Do not store guest lists or issued credentials in these documents.
 

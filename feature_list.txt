@@ -1,0 +1,25 @@
+1. [x] Get rid of the bottom text that says "FLORENCE, ITALY TOGETHER IS A BEAUTIFUL PLACE TO BE" 
+2. [x] Get rid of the Gifts link on the bottom right. Its already on the top 
+3. [x] Where it sort of gives details about the wedding like location, time - lets turn that into a KEY INFO section but still keep that artistic feel.
+4. [x] Change the browser tab icon to a coffee emoji and shorten the tab title to T & C.
+5. [x] Refine Key info into an editorial spread; use Florence, Italy and the confirmed wedding date September 14, 2027.
+6. [x] Replace oversized names and Key info with scroll-linked Florence, Italy and date text moving from the photo borders to below the picture; remove 14/09 and support reduced motion.
+7. [x] Match September 14, 2027 to Florence, Italy in the same serif font, oxblood colour, and size, including the scroll animation.
+8. [x] Keep the date smaller than Florence, Italy while retaining the serif font, oxblood colour, and scroll animation; supersedes item 7's equal sizing.
+9. [x] Animate "We're getting married" from the top frame and "Florence" from the right frame; keep "September 2027" static beside RSVP and settle captions at an endpoint when scrolling stops.
+10. [x] Rename "The Weekend" to "The Celebrations" and show the confirmed September 12–15, 2027 range in its homepage listing.
+11. [x] Refine only the hero into a portrait Editorial Cover with oversized overlapping names, the specified palette, separate desktop/mobile compositions, and review screenshots.
+12. [ ] Add the exact selected beach portrait (missing from the repository) and verify image placement and face clearance on desktop and mobile.
+13. [x] Center the homepage portrait and remove the introductory paragraph and Italian sign-off; retain the rest of the cover composition.
+14. [x] Build the editorial celebrations programme for September 12–15 with the supplied venues and a local planning preview of all four days.
+15. [ ] Decide guest-versus-couple credentials and finalize selective guest lists; connect server-side event permissions, RSVP, and database access. See BACKLOG.md.
+16. [x] Add BACKLOG.md in the repository and link it from AGENTS.md and README.md for future project-status reviews.
+17. [x] Set up separate design and technical reviewer agents for preflight before substantive changes and final review after every significant website change, including local/uncommitted work regardless of deployment. Complete both reviews before marking the change complete or starting unrelated significant work. See REVIEW_WORKFLOW.md; this is a local workflow, not remote deployment enforcement.
+18. [ ] Finish RSVP launch readiness: the access-boundary fix passed both independent reviews, 217 tests, clean lint/types, production build, responsive Chrome review, and keyboard link navigation. Configure explicit public event IDs and live service access; atomic persistence/idempotency remains required. See BACKLOG.md and DESIGN_DECISIONS.md.
+19. [ ] Complete the remaining public pages and launch verification after resolving required portrait/content/invitation/deployment inputs recorded in BACKLOG.md. Photographs are available locally in pictures_to_use and ignored by Git; the approved homepage file is not yet identified.
+
+Nice-to-have ideas — no home yet
+
+Open decisions and optional ideas are also tracked in BACKLOG.md inside the Git repository. Guest-vs-couple credentials are explicitly undecided.
+
+- [ ] Find a suitable future placement for "Ci vediamo in Italia." Keep it off the current homepage hero.

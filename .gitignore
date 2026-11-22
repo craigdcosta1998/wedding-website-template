@@ -41,3 +41,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 supabase/.temp/
+
+# Personal photographs and review captures stay local and out of Git.
+/pictures_to_use/
+/review/

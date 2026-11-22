@@ -12,6 +12,7 @@ Before substantial UI or architecture work, read PROJECT_BRIEF.md.
 - Keep the application running after each meaningful change.
 - Run the project's linting, type checking, and relevant tests before considering a task complete.
 - Fix errors introduced by your changes.
+- Keep the user's personal photographs and review images local. Never add or force-add them to Git, including copies under public/. Before a commit or push, check staged/tracked image paths; the existing template illustration and code-native icons are not personal photographs. Adding a personal photo to a public website or remote asset store requires a separate user decision.
 
 ## Design
 
@@ -58,11 +59,11 @@ Follow [REVIEW_WORKFLOW.md](REVIEW_WORKFLOW.md). The user explicitly requested s
 
 ### Project records
 
-The user's feature queue for this workspace is ../feature_list.txt, in the project folder above this Git repository. Use that existing file; do not create another feature_list.txt inside the repository.
+The user's feature queue is feature_list.txt in the project root. Keep this as the single feature queue; do not create a duplicate elsewhere.
 
 Read [BACKLOG.md](BACKLOG.md) for open decisions, required follow-up, and optional ideas. [README.md](README.md#project-status-and-pending-work) links the project status sources. Keep the backlog current alongside the feature queue, recording completed items and changed decisions. Never store private guest lists or issued credentials in these files.
 
-When the user asks about project status, pending items, or what to address next, inspect the current implementation and verification notes in DESIGN_DECISIONS.md as well as BACKLOG.md and ../feature_list.txt. Reconcile the sources; do not report stale backlog items as still pending when the code or a later user decision resolves them. Distinguish implemented features, unverified behavior, open decisions, required inputs, and optional ideas.
+When the user asks about project status, pending items, or what to address next, inspect the current implementation and verification notes in DESIGN_DECISIONS.md as well as BACKLOG.md and feature_list.txt. Reconcile the sources; do not report stale backlog items as still pending when the code or a later user decision resolves them. Distinguish implemented features, unverified behavior, open decisions, required inputs, and optional ideas.
 
 For large changes:
 

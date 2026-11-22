@@ -31,7 +31,7 @@ The current homepage palette overrides live in src/components/editorial/editoria
 - Fine rules and small "We're getting married" / "Florence, Italy" labels frame the portrait. "September 2027" is a restrained vertical date on desktop, horizontal below the photo on mobile. Preserve the verified wedding day and celebration range in shared configuration.
 - Mobile: centered, near-full-width 3:4 portrait, offset left frame rule, two-line "Talia &" / "Craig" across its lower edge, and horizontal date/RSVP. Avoid horizontal scrolling.
 - Tablet: retain the wider relative portrait, centered within the page. Keep names within the page width.
-- Remove the introduction and Italian sign-off from the hero. "Ci vediamo in Italia." is saved in ../feature_list.txt under ideas without a home; it has no current placement.
+- Remove the introduction and Italian sign-off from the hero. "Ci vediamo in Italia." is saved in feature_list.txt under ideas without a home; it has no current placement.
 - This is a single hero iteration: navigation, contents, other pages, and backend behavior are not redesigned.
 - Homepage navigation includes Our Story, The Celebrations (/events), Where to Stay (/hotels), Gifts, and RSVP. Show the confirmed September 12–15, 2027 range in the homepage celebrations listing. Do not create dead links to planned routes.
 - Mobile navigation is a disclosure with expanded state, Escape-to-close, and a visible keyboard focus treatment. Include a skip-to-content link.
