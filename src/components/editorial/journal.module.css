@@ -1,11 +1,16 @@
-/* ABOUTME: Scoped Italian Journal palette and responsive Editorial Cover composition */
+/* ABOUTME: Shared wedding palette and responsive editorial composition */
 .journal {
-  --ivory: #f6f2e9;
-  --terracotta: #a75e48;
-  --olive: #62664e;
-  --oxblood: #582b35;
-  --ink: #302e28;
-  --rule: #d4cdbf;
+  --chartreuse: #a8b23b;
+  --grape: #520b22;
+  --ivory: #f5f0e6;
+  --ink: #302027;
+  --muted: #65535b;
+  --wash: #eceecf;
+  --rule: #cec8af;
+  /* Compatibility roles keep existing pages on the shared, readable palette. */
+  --terracotta: var(--grape);
+  --olive: var(--muted);
+  --oxblood: var(--grape);
   background: var(--ivory);
   color: var(--ink);
   font-family: Arial, Helvetica, sans-serif;
@@ -15,13 +20,16 @@
 .journal a { transition: color 160ms ease; }
 .journal a:hover { color: var(--terracotta); }
 .page, .headerInner { width: min(1280px, 90%); margin-inline: auto; }
-.header { position: relative; z-index: 20; }
+.header { position: relative; z-index: 20; background: var(--ivory); color: var(--oxblood); }
+.homeHeader { --ivory: #f5f0e6; --oxblood: #6f3038; --terracotta: #b66e55; --olive: #777d5c; --ink: #332b27; --rule: #d4cabb; background-color: var(--ivory); color: var(--oxblood); }
+.homeHeader .desktopNav a, .homeHeader .menuButton, .homeHeader .mobileNav a { font-size: 14px; letter-spacing: .09em; }
 .headerInner { min-height: 100px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--rule); gap: 32px; }
 .monogram { font-family: var(--font-handwritten), Georgia, serif; font-size: 32px; letter-spacing: -.06em; color: var(--oxblood); }
 .monogram span { font-style: italic; margin-inline: 3px; font-size: 25px; }
 .desktopNav { display: flex; gap: clamp(20px, 3vw, 44px); }
 .desktopNav a, .headerControls, .eyebrow, .textLink, .placeholderIndex, .chapterNumber { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; line-height: 1.6; }
 .desktopNav a { display: inline-flex; align-items: center; min-height: 44px; }
+.desktopNav a:hover, .mobileNav a:hover { color: var(--oxblood); }
 .desktopNav a:last-child { border-bottom: 1px solid var(--oxblood); color: var(--oxblood); }
 .desktopNav a[aria-current="page"], .mobileNav a[aria-current="page"] { color: var(--oxblood); text-decoration: underline; text-underline-offset: 6px; }
 .headerControls { display: flex; gap: 18px; align-items: center; }
@@ -63,6 +71,8 @@
 .placeholderCaption > span:last-child { display: block; font-size: 10px; letter-spacing: .07em; margin-top: 5px; }
 .textLink { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; border-bottom: 1px solid var(--oxblood); color: var(--oxblood); white-space: nowrap; }
 .contents { display: grid; grid-template-columns: 1fr 3.25fr; gap: 5%; border-top: 1px solid var(--rule); padding-block: 48px 76px; }
+.homeContents { display: block; padding-top: 0; }
+.homeContents .chapters { max-width: 100%; }
 .contentsIntro p { max-width: 190px; font-family: var(--font-handwritten), Georgia, serif; font-size: 23px; line-height: 1.3; margin-top: 16px; }
 .chapters { display: flex; flex-direction: column; }
 .chapter { display: flex; align-items: center; gap: 22px; min-height: 94px; border-bottom: 1px solid var(--rule); padding-block: 18px; }
@@ -72,7 +82,15 @@
 .chapterTitle { font-family: var(--font-handwritten), Georgia, serif; font-size: 32px; line-height: 1.1; }
 .chapterDetail { color: var(--olive); font-size: 11px; line-height: 1.5; }
 .chapter > svg { color: var(--terracotta); flex-shrink: 0; }
-.footer { display: flex; gap: 32px; justify-content: space-between; align-items: flex-end; padding: 36px 5% 40px; border-top: 1px solid var(--rule); }
+.homeContents .eyebrow { color: var(--oxblood); }
+.homeContents .chapterNumber { color: var(--oxblood); }
+.homeContents .chapterDetail { color: var(--ink); }
+.homeContents .chapter:hover { color: var(--oxblood); }
+.homeContents .chapter { min-height: 88px; }
+.homeContents .chapterNumber { font-size: 14px; letter-spacing: .08em; }
+.homeContents .chapterTitle { font-size: clamp(28px, 3vw, 38px); }
+.footer { display: flex; gap: 32px; justify-content: space-between; align-items: flex-end; padding: 36px 5% 40px; border-top: 1px solid var(--grape); background: var(--chartreuse); }
+.homeFooter { --oxblood: #6f3038; --rule: #d4cabb; background: var(--ivory); border-top-color: var(--rule); }
 .signoff { color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: 24px; line-height: 1.2; }
 .signoff > span { font-size: 18px; font-style: italic; }
 
@@ -110,6 +128,7 @@
   .placeholderCaption p { font-size: 20px; }
   .placeholderCaption > span:last-child { font-size: 9px; }
   .contents { grid-template-columns: 1fr; gap: 28px; padding-block: 32px 44px; }
+  .homeContents { padding-top: 0; }
   .contentsIntro { display: flex; justify-content: space-between; gap: 25px; }
   .contentsIntro p { margin-top: 0; font-size: 22px; max-width: 195px; }
   .chapter { min-height: 100px; gap: 16px; }

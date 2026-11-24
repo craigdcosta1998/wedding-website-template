@@ -1,7 +1,7 @@
-// ABOUTME: Single source of truth for couple names, wedding date, and contact/payment details
+// ABOUTME: Single source of truth for approved couple and wedding details
 //
 // Names, date, and city are approved in PROJECT_BRIEF.md.
-// Event times, contact/payment details, and sender address remain unconfirmed.
+// Event times and contact details remain unconfirmed.
 // See DESIGN_DECISIONS.md before treating any remaining logistics as final.
 const weddingDate = '2027-09-14';
 const weddingDay = new Date(`${weddingDate}T00:00:00Z`);
@@ -39,11 +39,4 @@ export const WEDDING_CONFIG = {
   },
   location: `${weddingLocation.city}, ${weddingLocation.country}`,
   locationDetails: weddingLocation,
-  contactEmail: 'your-email@example.com',
-  fromEmail: 'wedding@example.com',
-  bankDetails: {
-    iban: 'DE00 0000 0000 0000 0000 00',
-    bic: 'XXXXXXXXXXX',
-    accountHolder: 'Your Name',
-  },
 } as const;

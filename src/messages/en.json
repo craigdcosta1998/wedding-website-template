@@ -23,13 +23,13 @@
     "gift": "Gifts"
   },
   "journal": {
-    "announcement": "We're getting married",
+    "announcement": "A few days in Italy with our favourite people.",
+    "sentiment": "A few days in Italy with our favourite people.",
     "portrait": "The portrait",
     "photoPlaceholder": "Our photograph goes here",
     "photoPending": "Couple portrait to be added",
     "beachPortraitPending": "Selected beach portrait to follow",
-    "contents": "Explore",
-    "welcome": "A few days in Italy. Our favourite people.",
+    "contents": "Explore the wedding",
     "story": "Our story",
     "storyDetail": "A little about the two of us",
     "celebrations": "The celebrations",
@@ -102,14 +102,8 @@
   },
   "gift": {
     "title": "Gifts",
-    "intro": "The greatest gift to us is having you celebrate with us.",
-    "honeymoon": "[If you'd like to go beyond that — e.g. a contribution to the honeymoon — say so here. Replace this placeholder text.]",
-    "story": "[Tell a short story about your gift registry or travel plans here — replace this placeholder text.]",
-    "bankDetails": "Bank Details",
-    "showDetails": "Show bank details",
-    "accountHolder": "Account holder",
-    "iban": "IBAN",
-    "bic": "BIC"
+    "pendingTitle": "Gift information will be shared here once details are confirmed.",
+    "pending": "We are still preparing this information. Please check back for an update."
   },
   "password": {
     "title": "Welcome",

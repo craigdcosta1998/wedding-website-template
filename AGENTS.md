@@ -2,6 +2,18 @@
 
 This repository is being converted into a custom multi-page wedding website for Talia and Craig.
 
+## Resume reminder - 2026-11-21
+
+The full website completion goal was paused on November 21 and Craig explicitly resumed it on November 22, 2026. Continue with Chrome and the separate design and technical reviewers as required in the workflow below. Stay's pending-content presentation now has both final approvals; see DESIGN_DECISIONS.md. If a later session starts without clear intent to continue, check whether Craig wants to resume the unfinished goal.
+
+November 22, 2026 handoff: Craig narrowed the immediate focus to Home, Events, and household RSVP; defer Our Story. The five-photo Home carousel and household RSVP flow are implemented locally. Technical final review approved its working-tree candidate; design review is blocked only on fresh rendered Chrome and interaction evidence. Before marking these changes complete or starting unrelated significant work, use Chrome at 390x844, 768x1024, and 1440x1000, verify all five carousel images and keyboard/reduced-motion behavior, and review Events plus RSVP entry/form/validation/success. See the latest checkpoint in DESIGN_DECISIONS.md and queue in feature_list.txt. Personal photos and review captures remain local and ignored.
+
+Before the next styling or visual redesign work, inspect Craig's [Wedding Moodboard in Canva](https://www.canva.com/design/DAHbCRQRzOo/cQfoypQUatm2IZzz-4wbYQ/view#35), then use it to guide the site's styling. Chrome inspection on November 22 confirmed that viewer page 35 of 40 is titled "color palettes" (the slide's printed number is 26). It contains several palette references; exact swatch values and the chosen combination have not been confirmed. Read the references before changing the site's palette. The shared view link works in Chrome without the Canva plugin; direct Canva tools require its plugin and account connection.
+
+The project is at the repository root on branch redesign/editorial-wedding-site. Personal photographs are kept locally in the ignored pictures_to_use/ folder and must not be committed or pushed.
+
+November 22, 2026: Craig chose one invitation code per household, with separate RSVP/event/dietary responses for each named person. The current completion target is a verified local site with clearly marked pending content; deployment and real guest-list/credential issuance are outside this phase. Use the shared Canva link through Chrome; installing Canva is optional.
+
 Before substantial UI or architecture work, read PROJECT_BRIEF.md.
 
 ## General rules

@@ -1,90 +1,58 @@
-// ABOUTME: Session management for household authentication using HMAC-signed cookies
+﻿// ABOUTME: Dedicated-secret household cookies with signed expiry and database revocation version
+import 'server-only';
 import { cookies } from 'next/headers';
-
-const SESSION_COOKIE_NAME = 'household_session';
-const SESSION_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
-
+const COOKIE = 'household_session';
+const MAX_AGE = 60 * 60 * 24 * 7;
+const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const encoder = new TextEncoder();
-
 export interface HouseholdSession {
   householdId: string;
-  householdCode: string;
-  primaryContactName: string;
+  authVersion: string;
+  issuedAt: number;
+  expiresAt: number;
 }
-
-interface SignedSession {
-  data: HouseholdSession;
-  sig: string;
+export function hasHouseholdSessionConfig() {
+  const secret = process.env.SESSION_SECRET;
+  return Boolean(secret && secret.length >= 32 && secret !== process.env.SITE_PASSWORD && secret !== process.env.SUPABASE_SERVICE_ROLE_KEY);
 }
-
-async function getSigningKey(): Promise<string> {
-  return process.env.SITE_PASSWORD || process.env.SUPABASE_SERVICE_ROLE_KEY || 'fallback-session-key';
+async function key() {
+  if (!hasHouseholdSessionConfig()) throw new Error('Invitation sessions are not configured');
+  return crypto.subtle.importKey('raw', encoder.encode(process.env.SESSION_SECRET!),
+    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign', 'verify']);
 }
-
-async function hmacSign(data: string): Promise<string> {
-  const key = await getSigningKey();
-  const cryptoKey = await crypto.subtle.importKey(
-    'raw',
-    encoder.encode(key),
-    { name: 'HMAC', hash: 'SHA-256' },
-    false,
-    ['sign']
-  );
-  const signature = await crypto.subtle.sign('HMAC', cryptoKey, encoder.encode(data));
-  return Array.from(new Uint8Array(signature))
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
+export async function signHouseholdSession(session: HouseholdSession): Promise<string> {
+  const data = JSON.stringify(session);
+  const sig = new Uint8Array(await crypto.subtle.sign('HMAC', await key(), encoder.encode(data)));
+  return JSON.stringify({ data, signature: Array.from(sig, b => b.toString(16).padStart(2, '0')).join('') });
 }
-
-async function hmacVerify(data: string, signature: string): Promise<boolean> {
-  const expected = await hmacSign(data);
-  if (signature.length !== expected.length) return false;
-  let mismatch = 0;
-  for (let i = 0; i < signature.length; i++) {
-    mismatch |= signature.charCodeAt(i) ^ expected.charCodeAt(i);
-  }
-  return mismatch === 0;
-}
-
-export async function getSession(): Promise<HouseholdSession | null> {
-  const cookieStore = await cookies();
-  const sessionCookie = cookieStore.get(SESSION_COOKIE_NAME);
-
-  if (!sessionCookie?.value) {
-    return null;
-  }
-
+export async function verifyHouseholdSession(value: string, now = Date.now()): Promise<HouseholdSession | null> {
   try {
-    const parsed = JSON.parse(sessionCookie.value) as SignedSession;
-    if (!parsed.data || !parsed.sig) {
-      // Legacy unsigned cookie — reject it
-      return null;
-    }
-    const dataStr = JSON.stringify(parsed.data);
-    const valid = await hmacVerify(dataStr, parsed.sig);
-    if (!valid) return null;
-    return parsed.data;
-  } catch {
-    return null;
-  }
+    if (value.length > 2048) return null;
+    const { data, signature } = JSON.parse(value);
+    if (typeof data !== 'string' || typeof signature !== 'string' || !/^[a-f0-9]{64}$/.test(signature)) return null;
+    const bytes = Uint8Array.from(signature.match(/../g)!, b => parseInt(b, 16));
+    if (!(await crypto.subtle.verify('HMAC', await key(), bytes, encoder.encode(data)))) return null;
+    const session = JSON.parse(data) as HouseholdSession;
+    if (!session || typeof session.householdId !== 'string' || !uuid.test(session.householdId) ||
+        typeof session.authVersion !== 'string' || !uuid.test(session.authVersion) ||
+        !Number.isSafeInteger(session.issuedAt) || !Number.isSafeInteger(session.expiresAt) ||
+        session.issuedAt > now || session.expiresAt <= now || session.expiresAt <= session.issuedAt ||
+        session.expiresAt - session.issuedAt > MAX_AGE * 1000) return null;
+    return session;
+  } catch { return null; }
 }
-
-export async function setSession(session: HouseholdSession): Promise<void> {
-  const dataStr = JSON.stringify(session);
-  const sig = await hmacSign(dataStr);
-  const signed: SignedSession = { data: session, sig };
-
-  const cookieStore = await cookies();
-  cookieStore.set(SESSION_COOKIE_NAME, JSON.stringify(signed), {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: SESSION_MAX_AGE,
-    path: '/',
+export async function getSession(): Promise<HouseholdSession | null> {
+  const value = (await cookies()).get(COOKIE)?.value;
+  return value ? verifyHouseholdSession(value) : null;
+}
+export async function setSession(identity: Pick<HouseholdSession, 'householdId' | 'authVersion'>): Promise<void> {
+  if (!uuid.test(identity.householdId) || !uuid.test(identity.authVersion)) throw new Error('Invalid invitation identity');
+  const now = Date.now();
+  const value = await signHouseholdSession({ ...identity, issuedAt: now, expiresAt: now + MAX_AGE * 1000 });
+  (await cookies()).set(COOKIE, value, {
+    httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'lax', maxAge: MAX_AGE, path: '/',
   });
 }
-
 export async function clearSession(): Promise<void> {
-  const cookieStore = await cookies();
-  cookieStore.delete(SESSION_COOKIE_NAME);
+  (await cookies()).delete(COOKIE);
 }

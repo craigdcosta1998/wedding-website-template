@@ -1,38 +1,30 @@
-// ABOUTME: RSVP page with open form for guests to submit their responses
+﻿// ABOUTME: Invitation-based household RSVP; fictional planning preview exists only in development
 export const dynamic = 'force-dynamic';
-
 import { setRequestLocale } from 'next-intl/server';
-import { OpenRsvpForm } from '@/components/rsvp/open-rsvp-form';
-import { getOpenRsvpEvents } from '@/lib/rsvp-access';
-import { Link } from '@/i18n/routing';
-
+import { HouseholdJourney } from '@/components/rsvp/household-journey';
+import { getHouseholdRsvpData } from '@/lib/household-rsvp';
+import { getVerifiedHousehold, hasHouseholdAccessConfig } from '@/lib/household-access';
+import { getHouseholdPreview } from '@/lib/household-preview';
+import { WEDDING_CONFIG } from '@/config/wedding';
+import journal from '@/components/editorial/journal.module.css';
+import styles from '@/components/editorial/rsvp.module.css';
 interface RsvpPageProps {
   params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ preview?: string | string[]; audience?: string | string[] }>;
 }
-
-export default async function RsvpPage({ params }: RsvpPageProps) {
+export default async function RsvpPage({ params, searchParams }: RsvpPageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-
-  const { available, events } = await getOpenRsvpEvents();
-
-  return (
-    <div className="flex flex-col">
-      <section className="relative min-h-screen watercolor-canvas paper-texture">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
-
-        <div className="relative z-10 container mx-auto px-4 py-12">
-          {available ? <OpenRsvpForm events={events} /> : (
-            <div className="mx-auto max-w-2xl space-y-6 text-center">
-              <h1 className="font-serif text-4xl sm:text-5xl text-primary">RSVP</h1>
-              <p role="status">RSVP details are being finalised. Please check back soon.</p>
-              <Link href="/events" className="inline-flex min-h-11 items-center underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">
-                The celebrations
-              </Link>
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
-  );
+  const query = await searchParams;
+  const previewData = query?.preview === 'planning' ? getHouseholdPreview(query.audience) : null;
+  const context = previewData ? null : await getVerifiedHousehold();
+  const data = context ? await getHouseholdRsvpData(context) : null;
+  return <div className={journal.journal}><div className={journal.page}>
+    <header className={styles.hero}><p className={styles.eyebrow}>{WEDDING_CONFIG.location} / September 2027</p>
+      <h1 className={styles.title}>RSVP</h1>
+      <p className={styles.intro}>We look forward to celebrating with you. Reply for each person on your household invitation.</p>
+    </header>
+    <div className={styles.body}><HouseholdJourney key={data?.id ?? 'entry'} initialData={data} previewData={previewData}
+      ready={Boolean(previewData) || (hasHouseholdAccessConfig() && (!context || Boolean(data)))} /></div>
+  </div></div>;
 }

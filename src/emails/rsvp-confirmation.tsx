@@ -95,12 +95,6 @@ export function RsvpConfirmationEmail({
 
           <Hr style={hr} />
 
-          <Text style={footer}>
-            {t.questions}
-            <br />
-            {WEDDING_CONFIG.contactEmail}
-          </Text>
-
           <Text style={footer}>{t.seeYou}</Text>
         </Container>
       </Body>
@@ -118,7 +112,6 @@ const translations = {
     dietary: 'Besonderheiten',
     eventDetails: 'Veranstaltungsdetails:',
     date: WEDDING_CONFIG.weddingDateDisplay.de,
-    questions: 'Bei Fragen erreichst du uns unter:',
     seeYou: 'Wir freuen uns auf dich!',
   },
   en: {
@@ -130,7 +123,6 @@ const translations = {
     dietary: 'Restrictions',
     eventDetails: 'Event details:',
     date: WEDDING_CONFIG.weddingDateDisplay.en,
-    questions: 'If you have any questions, contact us at:',
     seeYou: 'We look forward to seeing you!',
   },
 };

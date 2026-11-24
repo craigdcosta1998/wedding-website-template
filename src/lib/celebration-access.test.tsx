@@ -10,6 +10,7 @@ const mocks = vi.hoisted(() => ({
   from: vi.fn(),
   select: vi.fn(),
   in: vi.fn(),
+  household: vi.fn(),
 }));
 
 vi.mock('@/lib/supabase/server', () => ({
@@ -17,6 +18,7 @@ vi.mock('@/lib/supabase/server', () => ({
   createServiceClient: mocks.createServiceClient,
 }));
 vi.mock('next-intl/server', () => ({ setRequestLocale: vi.fn() }));
+vi.mock('@/lib/household-access', () => ({ getVerifiedHousehold: mocks.household }));
 vi.mock('@/i18n/routing', () => ({
   Link: ({ href, children }: { href: string; children: ReactNode }) => <a href={href}>{children}</a>,
 }));
@@ -44,6 +46,7 @@ beforeEach(() => {
   vi.clearAllMocks();
   vi.stubEnv('NODE_ENV', 'test');
   mocks.configured.mockReturnValue(false);
+  mocks.household.mockResolvedValue(null);
   mocks.createServiceClient.mockResolvedValue({ from: mocks.from });
   mocks.from.mockReturnValue({ select: mocks.select });
   mocks.select.mockReturnValue({ in: mocks.in });
@@ -56,6 +59,24 @@ afterEach(() => {
 });
 
 describe('celebration invitation filtering', () => {
+  it('renders only current household grants in the page/index and scopes details, then removes revoked private access', async () => {
+    mocks.configured.mockReturnValue(true);
+    const celebrations = CELEBRATIONS.filter(e => e.key !== 'pool-party').map(e => ({ ...e, databaseEventId: `${e.key}-id` }));
+    mocks.household.mockResolvedValue({ celebrations });
+    mocks.in.mockResolvedValue({ data: [detail('roce-id'), detail('pool-party-id')], error: null });
+    const html = await page();
+    expect(html).toContain('href="#roce"');
+    expect(html).toContain('The Roce');
+    expect(html).not.toContain('pool-party');
+    expect(html).not.toContain('Pool party');
+    expect(mocks.in).toHaveBeenCalledWith('id', ['roce-id', 'welcome-party-id', 'wedding-id']);
+    mocks.household.mockResolvedValue(null);
+    mocks.in.mockClear();
+    const revoked = await page();
+    expect(revoked).not.toContain('href="#roce"');
+    expect(revoked).not.toContain('The Roce');
+    expect(mocks.in).not.toHaveBeenCalled();
+  });
   it('shows only the common celebrations without verified invitations', () => {
     expect(selectInvitedCelebrations([]).map(event => [event.date, event.title, event.venue])).toEqual([
       ['2027-09-13', 'The welcome party', 'Serre Torrigiani'],

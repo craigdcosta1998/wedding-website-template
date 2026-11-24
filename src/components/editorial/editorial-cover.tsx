@@ -1,31 +1,27 @@
 // ABOUTME: Portrait Editorial Cover with oversized names crossing the photograph's lower edge
-import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
-import type { Locale } from '@/i18n/config';
-import { HOMEPAGE_CONFIG } from '@/config/homepage';
 import { WEDDING_CONFIG } from '@/config/wedding';
-import journal from './journal.module.css';
+import Image from 'next/image';
+import { LOCAL_PHOTO_PREVIEW } from '@/config/local-photo-preview';
 import styles from './editorial-cover.module.css';
 
-export async function EditorialCover({ locale }: { locale: Locale }) {
+export async function EditorialCover() {
   const t = await getTranslations('journal');
-  const photo = HOMEPAGE_CONFIG.heroPhoto;
-
   return (
     <section className={styles.hero} aria-labelledby="cover-heading">
       <div className={styles.portraitFrame}>
-        <div className={styles.labels}>
-          <p>{t('announcement')}</p>
-          <p>{WEDDING_CONFIG.location}</p>
-        </div>
         <div className={styles.portrait}>
-          {photo ? (
-            <Image src={photo.src} alt={photo.alt[locale]} fill priority
-              sizes="(max-width: 700px) 83vw, (max-width: 1100px) 53vw, 540px"
-              className={styles.photo} style={{ objectPosition: photo.objectPosition }} />
-          ) : (
+          {process.env.NODE_ENV === 'development' ? <Image
+            src={`/api/local-photo/${LOCAL_PHOTO_PREVIEW[1].id}`}
+            alt="A personal photograph from Talia and Craig's collection"
+            width={1092}
+            height={1365}
+            priority
+            unoptimized
+            sizes="(max-width: 700px) 88vw, (max-width: 1100px) 53vw, 540px"
+            className={styles.photo}
+          /> : (
             <div className={styles.pendingPortrait} role="img" aria-label={t('beachPortraitPending')}>
               <span aria-hidden="true">{t('beachPortraitPending')}</span>
             </div>
@@ -40,8 +36,9 @@ export async function EditorialCover({ locale }: { locale: Locale }) {
       </h1>
 
       <div className={styles.details}>
-        <time className={styles.date} dateTime={WEDDING_CONFIG.weddingDate.slice(0, 7)}>{WEDDING_CONFIG.weddingMonthYear}</time>
-        <Link href="/rsvp" className={journal.textLink}>{t('rsvp')}<ArrowUpRight size={17} strokeWidth={1} aria-hidden="true" /></Link>
+        <p className={styles.sentiment}>{t('sentiment')}</p>
+        <p className={styles.date}>{WEDDING_CONFIG.location} · {WEDDING_CONFIG.weddingMonthYear}</p>
+        <Link href="/rsvp" className={styles.rsvp}>{t('rsvp')}</Link>
       </div>
     </section>
   );

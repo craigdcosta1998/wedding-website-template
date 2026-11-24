@@ -14,6 +14,7 @@ vi.mock('@/lib/supabase/server', () => ({
 }));
 vi.mock('next/headers', () => ({ cookies: async () => ({ get: mocks.cookie }) }));
 vi.mock('next-intl/server', () => ({ setRequestLocale: vi.fn() }));
+vi.mock('next/navigation', () => ({ useRouter: () => ({ refresh: vi.fn() }) }));
 vi.mock('@/i18n/routing', () => ({
   Link: ({ href, children, ...props }: { href: string; children: ReactNode }) => <a href={href} {...props}>{children}</a>,
 }));

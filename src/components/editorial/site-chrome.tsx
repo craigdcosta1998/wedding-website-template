@@ -33,7 +33,7 @@ export function EditorialHeader() {
   }, [open]);
 
   return (
-    <header className={`${styles.journal} ${styles.header}`}>
+    <header className={`${styles.journal} ${styles.header} ${pathname === '/' ? styles.homeHeader : ''}`}>
       <a href="#main-content" className={styles.skipLink}>{t('skip')}</a>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.monogram} aria-label={`${WEDDING_CONFIG.coupleNames} — ${t('home')}`} onClick={() => setOpen(false)}>
@@ -54,9 +54,9 @@ export function EditorialHeader() {
   );
 }
 
-export function EditorialFooter() {
+export function EditorialFooter({ home = false }: { home?: boolean }) {
   return (
-    <footer className={`${styles.journal} ${styles.footer}`}>
+    <footer className={`${styles.journal} ${styles.footer} ${home ? styles.homeFooter : ''}`}>
       <p className={styles.signoff}><span lang="it">Con amore,</span><br />{WEDDING_CONFIG.coupleNames}</p>
     </footer>
   );

@@ -45,3 +45,5 @@ supabase/.temp/
 # Personal photographs and review captures stay local and out of Git.
 /pictures_to_use/
 /review/
+/codex_homepage_handoff/assets/*.jpg
+/codex_homepage_handoff/references/*.png

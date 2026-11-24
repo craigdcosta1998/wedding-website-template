@@ -1,0 +1,52 @@
+/* ABOUTME: Editorial household RSVP with accessible native controls and independent member sections */
+.hero { padding-block: 64px 40px; border-bottom: 1px solid var(--rule); }
+.eyebrow { font-size: .875rem; line-height: 1.6; color: var(--oxblood); letter-spacing: .1em; text-transform: uppercase; }
+.title { font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(4.5rem, 9vw, 8rem); color: var(--oxblood); font-weight: 400; line-height: 1; margin-block: 24px; }
+.intro { max-width: 38rem; font-size: 1.125rem; line-height: 1.7; }
+.body { padding-block: 40px 72px; font-size: 1rem; line-height: 1.7; }
+.notice { border-block: 1px solid var(--olive); padding: 20px 0; margin-bottom: 38px; color: var(--ink); }
+.notice strong { color: var(--oxblood); }
+.notice a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; }
+.notice.notice a:hover { color: var(--oxblood); }
+.entry { max-width: 44rem; }
+.entry label { display: block; margin-top: 30px; font-weight: 600; }
+.codeRow { display: flex; gap: 18px; align-items: stretch; margin-top: 12px; }
+.codeRow input { min-width: 0; width: 14rem; letter-spacing: .16em; text-transform: uppercase; }
+.body input:not([type=radio]), .body textarea { border: 1px solid var(--olive); border-radius: 0; padding: 12px 14px; background: transparent; color: var(--ink); font: inherit; }
+.body textarea { display: block; width: 100%; max-width: 36rem; resize: vertical; }
+.body input:focus-visible, .body textarea:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 4px; }
+.button { display: inline-flex; min-height: 48px; justify-content: center; align-items: center; padding: 12px 24px; background: var(--chartreuse); border: 1px solid var(--grape); color: var(--grape); font-size: 1rem; line-height: 1.5; cursor: pointer; }
+.button:hover { background: var(--grape); color: var(--ivory); }
+.button:disabled, .textButton:disabled { opacity: .65; cursor: wait; }
+.textButton { min-height: 44px; display: inline-flex; align-items: center; color: var(--oxblood); text-decoration: underline; text-underline-offset: 5px; font-size: 1rem; cursor: pointer; }
+.textButton.textButton:hover { color: var(--oxblood); }
+.note { color: var(--olive); font-size: .875rem; line-height: 1.7; margin-block: 12px; }
+.householdHeading { display: flex; justify-content: space-between; align-items: end; gap: 24px; }
+.householdHeading h2, .member h2, .success h2 { font-family: var(--font-handwritten), Georgia, serif; font-weight: 400; color: var(--oxblood); font-size: clamp(2.2rem, 4vw, 3.4rem); line-height: 1.2; }
+.formIntro { max-width: 42rem; margin-block: 28px 40px; }
+.member { display: grid; grid-template-columns: 1fr 1.7fr; gap: 7%; border-top: 1px solid var(--rule); padding-block: 36px 42px; }
+.memberAnswers { min-width: 0; }
+.event { padding: 0 0 28px; min-width: 0; }
+.event legend { font-size: 1.125rem; font-weight: 600; }
+.event legend span, .diet span { display: block; color: var(--olive); font-size: .875rem; font-weight: 400; }
+.choices { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 10px; }
+.choices label { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; cursor: pointer; }
+.choices input { accent-color: var(--oxblood); width: 20px; height: 20px; flex-shrink: 0; }
+.diet { display: block; font-weight: 600; margin-bottom: 12px; }
+.error { border-left: 3px solid var(--oxblood); padding: 16px 20px; background: #eee5df; color: var(--oxblood); margin-block: 24px; max-width: 44rem; }
+.submitRow { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding-top: 28px; border-top: 1px solid var(--rule); }
+.submitRow p { max-width: 32rem; }
+.success { padding-block: 40px; }
+.success > p { max-width: 40rem; margin-block: 24px; }
+.summary { padding-block: 24px; border-top: 1px solid var(--rule); }
+.summary h3 { font-weight: 600; font-size: 1.125rem; margin-bottom: 10px; }
+.summary ul { list-style: none; padding: 0; }
+@media (max-width: 760px) {
+  .hero { padding-block: 36px 28px; }
+  .body { padding-block: 28px 48px; }
+  .householdHeading { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .member { grid-template-columns: 1fr; gap: 24px; }
+  .codeRow, .submitRow { flex-direction: column; align-items: stretch; }
+  .codeRow input { width: 100%; }
+  .choices { flex-direction: column; gap: 0; }
+}

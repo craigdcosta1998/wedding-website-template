@@ -16,7 +16,7 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  if (pathname === '/' || pathname === '/our-story' || pathname === '/events' || pathname === '/hotels') return <EditorialHeader />;
+  if (pathname === '/' || pathname === '/our-story' || pathname === '/events' || pathname === '/hotels' || pathname === '/gift' || pathname === '/rsvp') return <EditorialHeader />;
 
   const navItems: { href: string; label: string; disabled?: boolean }[] = [
     { href: '/', label: t('home') },

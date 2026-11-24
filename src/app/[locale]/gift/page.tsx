@@ -1,7 +1,8 @@
-// ABOUTME: Gift page with honeymoon message and animated bank details tile
-import { setRequestLocale } from 'next-intl/server';
-import { getTranslations } from 'next-intl/server';
-import { FloatingBankDetails } from '@/components/gift/floating-bank-details';
+// ABOUTME: Editorial gift-information page with an honest pending state
+import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { WEDDING_CONFIG } from '@/config/wedding';
+import journal from '@/components/editorial/journal.module.css';
+import styles from '@/components/editorial/gift.module.css';
 
 interface GiftPageProps {
   params: Promise<{ locale: string }>;
@@ -14,32 +15,20 @@ export default async function GiftPage({ params }: GiftPageProps) {
   const t = await getTranslations('gift');
 
   return (
-    <div className="flex flex-col">
-      <section className="relative min-h-screen watercolor-canvas paper-texture">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-white/60" />
-
-        <div className="relative z-10 container mx-auto px-4 py-12">
-          <div className="max-w-2xl mx-auto text-center space-y-8">
-            <h1 className="handwritten text-4xl sm:text-5xl text-primary">
-              {t('title')}
-            </h1>
-
-            <p className="text-muted-foreground text-base leading-relaxed">
-              {t('intro')}
-            </p>
-
-            <p className="text-muted-foreground text-base leading-relaxed">
-              {t('honeymoon')}
-            </p>
-
-            <p className="text-muted-foreground text-base leading-relaxed">
-              {t('story')}
-            </p>
+    <div className={`${journal.journal} ${styles.shell}`}>
+      <div className={`${journal.page} ${styles.page}`}>
+        <header className={styles.heading}>
+          <p className={styles.overline}>{WEDDING_CONFIG.location}</p>
+          <h1>{t('title')}</h1>
+        </header>
+        <section className={styles.note} aria-labelledby="gift-pending-title">
+          <p className={styles.index}>A NOTE / TO FOLLOW</p>
+          <div>
+            <h2 id="gift-pending-title">{t('pendingTitle')}</h2>
+            <p>{t('pending')}</p>
           </div>
-
-          <FloatingBankDetails />
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   );
 }

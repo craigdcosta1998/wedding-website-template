@@ -22,8 +22,14 @@ export async function sendRsvpConfirmation({
   guests,
   locale,
 }: SendRsvpConfirmationParams) {
-  if (!process.env.RESEND_API_KEY) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
     return { success: true, data: null };
+  }
+
+  const fromEmail = process.env.RESEND_FROM_EMAIL?.trim();
+  if (!fromEmail) {
+    return { success: false, error: new Error('RSVP email delivery is not configured.') };
   }
 
   const subject = locale === 'de'
@@ -31,9 +37,9 @@ export async function sendRsvpConfirmation({
     : `RSVP Confirmation - ${WEDDING_CONFIG.coupleNames} Wedding`;
 
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const resend = new Resend(apiKey);
     const { data, error } = await resend.emails.send({
-      from: `${WEDDING_CONFIG.coupleNames} <${WEDDING_CONFIG.fromEmail}>`,
+      from: `${WEDDING_CONFIG.coupleNames} <${fromEmail}>`,
       to: [to],
       subject,
       react: RsvpConfirmationEmail({ householdName, guests, locale }),

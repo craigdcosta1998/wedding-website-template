@@ -1,27 +1,21 @@
-// ABOUTME: Server-only schedule filtering; credential identity is deliberately undecided
+// ABOUTME: Server-only schedule filtering from verified household invitations
 import 'server-only';
 import { CELEBRATIONS } from '@/config/celebrations';
 import { createServiceClient, hasSupabaseServiceConfig } from '@/lib/supabase/server';
 import type { CelebrationDetails, CelebrationKey } from '@/types/celebrations';
+import { getVerifiedHousehold } from '@/lib/household-access';
 
 export function selectInvitedCelebrations(invitedKeys: readonly CelebrationKey[]) {
   const invited = new Set(invitedKeys);
   return CELEBRATIONS.filter(event => event.audience === 'all-guests' || invited.has(event.key));
 }
 
-async function resolveVerifiedInvitations(): Promise<readonly CelebrationKey[]> {
-  // User deferred guest-vs-couple credentials. Never infer grants from a name,
-  // query string, shared site password, legacy invitation tier, or RSVP selections.
-  // Connect this boundary to verified per-event permissions after that decision.
-  // Until then, invitation-only sections remain absent from the guest response.
-  return [];
-}
-
 export async function getCelebrationsPageData(previewRequested: boolean) {
   const isPlanningPreview = process.env.NODE_ENV === 'development' && previewRequested;
+  const household = isPlanningPreview ? null : await getVerifiedHousehold();
   const celebrations = isPlanningPreview
     ? CELEBRATIONS
-    : selectInvitedCelebrations(await resolveVerifiedInvitations());
+    : household?.celebrations ?? selectInvitedCelebrations([]);
   let details: CelebrationDetails[] = [];
   // Link existing records once detailed plans are ready; never infer a match by name.
   const eventIds = celebrations.flatMap(event => event.databaseEventId ? [event.databaseEventId] : []);
