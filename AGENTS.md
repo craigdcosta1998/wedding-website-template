@@ -10,7 +10,15 @@ November 22, 2026 handoff: Craig narrowed the immediate focus to Home, Events, a
 
 Before the next styling or visual redesign work, inspect Craig's [Wedding Moodboard in Canva](https://www.canva.com/design/DAHbCRQRzOo/cQfoypQUatm2IZzz-4wbYQ/view#35), then use it to guide the site's styling. Chrome inspection on November 22 confirmed that viewer page 35 of 40 is titled "color palettes" (the slide's printed number is 26). It contains several palette references; exact swatch values and the chosen combination have not been confirmed. Read the references before changing the site's palette. The shared view link works in Chrome without the Canva plugin; direct Canva tools require its plugin and account connection.
 
-The project is at the repository root on branch redesign/editorial-wedding-site. Personal photographs are kept locally in the ignored pictures_to_use/ folder and must not be committed or pushed.
+## Git branching and integration
+
+- The active development integration branch is `redesign/homepage-approved`. It contains the current approved homepage and is the base for ongoing page work.
+- Start a short-lived feature branch from `redesign/homepage-approved` for each substantial page or coherent feature (for example, `feature/events-page`). After the work passes the required checks and independent reviews, merge that branch back into `redesign/homepage-approved`.
+- Git's `main` branch is the original template. Do not merge ongoing page work into `main`; use it only when Craig explicitly authorizes a release integration.
+- `redesign/editorial-wedding-site` is superseded for new work. Preserve its existing checkout and uncommitted files; do not reset, clean, or use it as the base for new feature branches unless Craig directs otherwise.
+- `experiment/hero-with-names` records the approved homepage experiment at the same starting commit as `redesign/homepage-approved`; continue product development on `redesign/homepage-approved`.
+
+Personal photographs are kept locally in the ignored pictures_to_use/ folder and must not be committed or pushed.
 
 November 22, 2026: Craig chose one invitation code per household, with separate RSVP/event/dietary responses for each named person. The current completion target is a verified local site with clearly marked pending content; deployment and real guest-list/credential issuance are outside this phase. Use the shared Canva link through Chrome; installing Canva is optional.
 
