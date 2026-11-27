@@ -8,7 +8,12 @@ export const LOCAL_PHOTO_PREVIEW = [
   { id: 'portrait-05', file: 'IMG_2130.JPG' },
 ] as const;
 
-const photoById = new Map<string, string>(LOCAL_PHOTO_PREVIEW.map((photo) => [photo.id, photo.file]));
+export const LOCAL_HERO_PHOTO = { id: 'hero-beach-standing', file: 'beach_proposal_standing.JPG' } as const;
+
+const photoById = new Map<string, string>([
+  ...LOCAL_PHOTO_PREVIEW.map((photo) => [photo.id, photo.file] as const),
+  [LOCAL_HERO_PHOTO.id, LOCAL_HERO_PHOTO.file],
+]);
 
 export function getLocalPhotoFilename(id: string) {
   return photoById.get(id) ?? null;

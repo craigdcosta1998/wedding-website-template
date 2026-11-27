@@ -1,6 +1,6 @@
 // ABOUTME: Keep local photo preview identifiers closed and traversal-safe
 import { describe, expect, it } from 'vitest';
-import { getLocalPhotoFilename, isLoopbackHost, LOCAL_PHOTO_PREVIEW } from './local-photo-preview';
+import { getLocalPhotoFilename, isLoopbackHost, LOCAL_HERO_PHOTO, LOCAL_PHOTO_PREVIEW } from './local-photo-preview';
 
 describe('local photo preview allowlist', () => {
   it('contains exactly five fixed JPEGs with no filesystem paths', () => {
@@ -9,6 +9,11 @@ describe('local photo preview allowlist', () => {
       expect(getLocalPhotoFilename(photo.id)).toBe(photo.file);
       expect(photo.file).not.toMatch(/[\\/]/);
     }
+  });
+
+  it('keeps the hero photograph separate from the five-photo carousel', () => {
+    expect(getLocalPhotoFilename(LOCAL_HERO_PHOTO.id)).toBe('beach_proposal_standing.JPG');
+    expect(LOCAL_HERO_PHOTO.file).not.toMatch(/[\\/]/);
   });
 
   it.each(['..', '../.env.local', 'portrait-01/../../.env.local', 'unknown'])('rejects unknown identifier %s', (id) => {

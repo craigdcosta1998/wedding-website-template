@@ -1,20 +1,15 @@
 // ABOUTME: Root layout that provides base HTML structure and global styles
 import type { Metadata } from 'next';
-import { Oswald, Crimson_Text } from 'next/font/google';
+import { Petit_Formal_Script } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { WEDDING_CONFIG } from '@/config/wedding';
 import './globals.css';
 
-const oswald = Oswald({
+const petitFormalScript = Petit_Formal_Script({
   variable: '--font-body',
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-});
-
-const crimsonText = Crimson_Text({
-  variable: '--font-handwritten',
-  subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: '400',
+  display: 'swap',
 });
 
 const metadataTitle = `${WEDDING_CONFIG.coupleNames} | ${WEDDING_CONFIG.weddingMonthYear}`;
@@ -41,7 +36,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${oswald.variable} ${crimsonText.variable} antialiased min-h-screen`}
+        className={`${petitFormalScript.variable} antialiased min-h-screen`}
       >
         {children}
         <Analytics />

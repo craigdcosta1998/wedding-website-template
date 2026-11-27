@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/routing';
 import { WEDDING_CONFIG } from '@/config/wedding';
 import Image from 'next/image';
-import { LOCAL_PHOTO_PREVIEW } from '@/config/local-photo-preview';
+import { LOCAL_HERO_PHOTO } from '@/config/local-photo-preview';
 import styles from './editorial-cover.module.css';
 
 export async function EditorialCover() {
@@ -13,13 +13,13 @@ export async function EditorialCover() {
       <div className={styles.portraitFrame}>
         <div className={styles.portrait}>
           {process.env.NODE_ENV === 'development' ? <Image
-            src={`/api/local-photo/${LOCAL_PHOTO_PREVIEW[1].id}`}
-            alt="A personal photograph from Talia and Craig's collection"
-            width={1092}
+            src={`/api/local-photo/${LOCAL_HERO_PHOTO.id}`}
+            alt="Talia and Craig standing together beneath a beach proposal arch"
+            width={2048}
             height={1365}
             priority
             unoptimized
-            sizes="(max-width: 700px) 88vw, (max-width: 1100px) 53vw, 540px"
+            sizes="(max-width: 700px) 100vw, (max-width: 1100px) 90vw, 1248px"
             className={styles.photo}
           /> : (
             <div className={styles.pendingPortrait} role="img" aria-label={t('beachPortraitPending')}>

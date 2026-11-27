@@ -1,14 +1,14 @@
 /* ABOUTME: Photo-led editorial cover, with faces clear of the signature names */
 .canvas { --ivory: #f5f0e6; --oxblood: #6f3038; --terracotta: #b66e55; --olive: #777d5c; --ink: #332b27; --rule: #d4cabb; }
 
-.hero { --ivory: #f5f0e6; --oxblood: #6f3038; --terracotta: #b66e55; --olive: #777d5c; --ink: #332b27; --rule: #d4cabb; position: relative; display: flex; flex-direction: column; align-items: center; padding-block: 26px 62px; }
-.portraitFrame { position: relative; width: min(88%, 1040px); margin-inline: auto; }
-.portrait { position: relative; aspect-ratio: 1.53; overflow: hidden; background: #e7dfd1; }
+.hero { --ivory: #f5f0e6; --oxblood: #6f3038; --terracotta: #b66e55; --olive: #777d5c; --ink: #332b27; --rule: #d4cabb; position: relative; display: flex; flex-direction: column; align-items: center; padding-block: 0 62px; }
+.portraitFrame { position: relative; width: 100%; margin-inline: auto; }
+.portrait { position: relative; aspect-ratio: 1.5; overflow: hidden; background: #e7dfd1; }
 .portrait::after { content: ''; position: absolute; z-index: 1; inset: 58% 0 0; background: linear-gradient(to bottom, transparent, var(--ivory) 100%); pointer-events: none; }
 .photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; }
 .pendingPortrait { position: absolute; inset: 0; display: grid; place-items: center; padding: 30px; color: var(--ink); text-align: center; }
 .pendingPortrait span { max-width: 340px; font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(22px, 3vw, 30px); font-style: italic; line-height: 1.25; }
-.names { position: relative; z-index: 2; display: flex; align-items: baseline; justify-content: center; gap: .13em; width: 100%; margin: -.52em 0 0; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(76px, 14vw, 188px); font-weight: 400; line-height: .9; letter-spacing: -.055em; white-space: nowrap; }
+.names { position: relative; z-index: 2; display: flex; align-items: baseline; justify-content: center; gap: .13em; width: 100%; margin: -.52em 0 0; color: var(--oxblood); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(61px, 11.2vw, 150px); font-weight: 400; line-height: .9; letter-spacing: -.055em; white-space: nowrap; }
 .ampersand { font-size: .76em; font-style: italic; font-weight: 400; }
 .details { display: flex; flex-direction: column; align-items: center; gap: 13px; margin-top: 17px; text-align: center; }
 .sentiment { margin: 0; color: var(--olive); font-family: var(--font-handwritten), Georgia, serif; font-size: clamp(25px, 3.2vw, 42px); font-style: normal; line-height: 1.2; }
@@ -17,22 +17,14 @@
 .hero .rsvp:hover { background: transparent; color: var(--oxblood); }
 .rsvp:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 4px; }
 
-@media (min-width: 1101px) {
-  .hero { padding-top: 34px; }
-  .portraitFrame { width: min(82%, 1080px); }
-}
 @media (min-width: 701px) and (max-width: 1100px) {
-  .portraitFrame { width: 90%; }
-  .portrait { aspect-ratio: 1.32; }
-  .names { font-size: clamp(86px, 14vw, 145px); }
+  .names { font-size: clamp(69px, 11.2vw, 116px); }
 }
 @media (max-width: 700px) {
-  .hero { padding-block: 16px 42px; }
-  .portraitFrame { width: 100%; }
-  .portrait { aspect-ratio: .86; }
-  .photo { object-position: 50% 42%; }
+  .hero { padding-block: 0 42px; }
+  .photo { object-position: 50% 50%; }
   .portrait::after { inset-block-start: 64%; }
-  .names { display: grid; grid-template-columns: max-content max-content; justify-content: center; column-gap: .12em; row-gap: .01em; margin-top: -.38em; font-size: clamp(70px, 20vw, 112px); line-height: .78; }
+  .names { display: grid; grid-template-columns: max-content max-content; justify-content: center; column-gap: .12em; row-gap: .01em; margin-top: -.38em; font-size: clamp(64px, 17vw, 92px); line-height: .78; }
   .names > span:first-child { grid-column: 1; }
   .ampersand { grid-column: 2; }
   .lastName { grid-column: 1 / -1; margin-left: .46em; }

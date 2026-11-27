@@ -18,10 +18,11 @@
 17. [x] Set up separate design and technical reviewer agents for preflight before substantive changes and final review after every significant website change, including local/uncommitted work regardless of deployment. Complete both reviews before marking the change complete or starting unrelated significant work. See REVIEW_WORKFLOW.md; this is a local workflow, not remote deployment enforcement.
 18. [ ] Finish RSVP launch readiness: configure explicit public event IDs, execute and verify database migrations and live service integration, complete current visual/keyboard review, and verify transaction/retry behavior against Supabase. See BACKLOG.md and DESIGN_DECISIONS.md.
 19. [ ] Complete the remaining public pages and launch verification after resolving required portrait/content/invitation/deployment inputs recorded in BACKLOG.md. Photographs are available locally in pictures_to_use and ignored by Git; the approved homepage file is not yet identified.
+20. [x] Refine the names-led homepage hero from Craig's November 27 feedback: use a full-width proportional local photo preview, reduce names, apply cursive typography, update hero copy and link labels/order, remove Home link numbering, and add the spritz mobile menu icon. Both independent final reviews approved the 1440×1000, 768×1024, and 390×844 renders and mobile menu interaction. Lint, TypeScript, 265 tests, production build, and diff check passed. The photo is local-only; publication permission remains a separate decision. See DESIGN_DECISIONS.md.
 
 Current priority as of November 23, 2026: Home/landing page, The Celebrations, then household RSVP. Our Story, Florence, Travel, and Stay are lower priorities. DESIGN.md defines the visual system and sequential implementation/review process.
 
-Local review follow-up: development site is http://127.0.0.1:3000/en while the server runs on this computer. The homepage hero has been reviewed at 390×844, 768×1024, and 1440×1000 and approved by both independent reviewers. Lint, TypeScript, 264 tests, production build, and diff check pass. Events and RSVP responsive/interaction review remain pending; see BACKLOG.md and DESIGN_DECISIONS.md.
+Local review follow-up: the current homepage hero has been reviewed at 390×844, 768×1024, and 1440×1000 and approved by both independent reviewers. Lint, TypeScript, 265 tests, production build, and diff check pass. Events and RSVP responsive/interaction review remain pending; see BACKLOG.md and DESIGN_DECISIONS.md.
 
 Nice-to-have ideas — no home yet
 

@@ -13,13 +13,14 @@
   --oxblood: var(--grape);
   background: var(--ivory);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), cursive;
 }
 .journal a, .journal button { -webkit-tap-highlight-color: transparent; }
 .journal a:focus-visible, .journal button:focus-visible { outline: 2px solid var(--oxblood); outline-offset: 5px; }
 .journal a { transition: color 160ms ease; }
 .journal a:hover { color: var(--terracotta); }
 .page, .headerInner { width: min(1280px, 90%); margin-inline: auto; }
+.homePage { width: 100%; max-width: none; }
 .header { position: relative; z-index: 20; background: var(--ivory); color: var(--oxblood); }
 .homeHeader { --ivory: #f5f0e6; --oxblood: #6f3038; --terracotta: #b66e55; --olive: #777d5c; --ink: #332b27; --rule: #d4cabb; background-color: var(--ivory); color: var(--oxblood); }
 .homeHeader .desktopNav a, .homeHeader .menuButton, .homeHeader .mobileNav a { font-size: 14px; letter-spacing: .09em; }
@@ -34,6 +35,9 @@
 .desktopNav a[aria-current="page"], .mobileNav a[aria-current="page"] { color: var(--oxblood); text-decoration: underline; text-underline-offset: 6px; }
 .headerControls { display: flex; gap: 18px; align-items: center; }
 .menuButton { display: none; min-height: 44px; min-width: 44px; cursor: pointer; }
+.menuButton { justify-content: center; border: 0; background: transparent; color: var(--oxblood); }
+.spritzMenuIcon { display: block; width: 44px; height: 36px; }
+.closeMenuIcon { display: block; width: 24px; height: 24px; }
 .mobileNav { padding: 12px 5% 24px; border-bottom: 1px solid var(--rule); }
 .mobileNav[hidden] { display: none; }
 .skipLink { position: absolute; left: 5%; top: -100px; padding: 12px; background: var(--ivory); }
@@ -71,7 +75,7 @@
 .placeholderCaption > span:last-child { display: block; font-size: 10px; letter-spacing: .07em; margin-top: 5px; }
 .textLink { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; border-bottom: 1px solid var(--oxblood); color: var(--oxblood); white-space: nowrap; }
 .contents { display: grid; grid-template-columns: 1fr 3.25fr; gap: 5%; border-top: 1px solid var(--rule); padding-block: 48px 76px; }
-.homeContents { display: block; padding-top: 0; }
+.homeContents { display: block; width: min(1280px, 90%); margin-inline: auto; padding-top: 0; }
 .homeContents .chapters { max-width: 100%; }
 .contentsIntro p { max-width: 190px; font-family: var(--font-handwritten), Georgia, serif; font-size: 23px; line-height: 1.3; margin-top: 16px; }
 .chapters { display: flex; flex-direction: column; }

@@ -17,14 +17,14 @@
   "nav": {
     "home": "Home",
     "rsvp": "RSVP",
-    "events": "The celebrations",
+    "events": "Celebrations",
     "accommodation": "Hotels",
     "ourStory": "Our Story",
     "gift": "Gifts"
   },
   "journal": {
-    "announcement": "A few days in Italy with our favourite people.",
-    "sentiment": "A few days in Italy with our favourite people.",
+    "announcement": "Cannot wait to get married in front of our favorite people",
+    "sentiment": "Cannot wait to get married in front of our favorite people",
     "portrait": "The portrait",
     "photoPlaceholder": "Our photograph goes here",
     "photoPending": "Couple portrait to be added",
@@ -32,7 +32,7 @@
     "contents": "Explore the wedding",
     "story": "Our story",
     "storyDetail": "A little about the two of us",
-    "celebrations": "The celebrations",
+    "celebrations": "Celebrations",
     "stay": "Where to stay",
     "stayDetail": "Make yourself at home",
     "gifts": "Gifts",
@@ -41,6 +41,7 @@
     "navigation": "Main navigation",
     "menu": "Menu",
     "close": "Close",
+    "openMenu": "Open menu",
     "skip": "Skip to content"
   },
   "home": {

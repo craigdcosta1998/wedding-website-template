@@ -18,13 +18,12 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
   return (
     <div className={`${styles.journal} ${coverStyles.canvas}`}>
-      <div className={styles.page}>
+      <div className={`${styles.page} ${styles.homePage}`}>
         <EditorialCover />
         <section className={`${styles.contents} ${styles.homeContents}`} aria-label={t('contents')}>
           <div className={styles.chapters}>
-            {chapters.map((chapter, index) => (
+            {chapters.map((chapter) => (
               <Link key={chapter.href} href={chapter.href} className={styles.chapter}>
-                <span className={styles.chapterNumber}>0{index + 1}</span>
                 <span className={styles.chapterCopy}><span className={styles.chapterTitle}>{chapter.title}</span></span>
                 <ArrowUpRight size={22} strokeWidth={1} aria-hidden="true" />
               </Link>
